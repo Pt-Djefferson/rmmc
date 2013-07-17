@@ -5,65 +5,139 @@
 		<id_arg>0</id_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>448,320</pos>
-			<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
-				<image_list></image_list>
-				<tree_items>
-					<item>CommandsTreeCtrl</item>
-					<item></item>
-				</tree_items>
-				<items_text>
-					<item2>CommandsTreeCtrl</item2>
-					<item2></item2>
-				</items_text>
-				<expand_all>1</expand_all>
-				<pos>8,64</pos>
-				<size>320,440</size>
-				<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
-				<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_DRAG" />
-				<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_RDRAG" />
-			</object>
-			<object class="wxBitmapComboBox" name="ID_BITMAPCOMBOBOX1" variable="BitmapComboBox1" member="yes">
-				<mImageList>&lt;none&gt;</mImageList>
-				<mItems>
-					<item>BitmapComboBox1</item>
-					<item>&lt;none&gt;</item>
-				</mItems>
-				<mItemsText>
-					<item2>BitmapComboBox1</item2>
-					<item2>&lt;none&gt;</item2>
-				</mItemsText>
-				<pos>896,24</pos>
-			</object>
-			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
-				<label>Label</label>
-				<pos>872,432</pos>
-			</object>
-			<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-				<pos>760,64</pos>
-				<size>264,352</size>
-				<style>wxTE_MULTILINE</style>
-			</object>
-			<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
-				<label>Label</label>
-				<pos>8,504</pos>
-				<handler function="OnButton2Click" entry="EVT_BUTTON" />
-			</object>
-			<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
-				<label>Label</label>
-				<pos>120,504</pos>
-				<handler function="OnButton3Click" entry="EVT_BUTTON" />
-			</object>
-			<object class="wxButton" name="ID_BUTTON4" variable="Button4" member="yes">
-				<label>Label</label>
-				<pos>8,40</pos>
-			</object>
-			<object class="wxButton" name="ID_BUTTON5" variable="Button5" member="yes">
-				<label>Label</label>
-				<pos>88,40</pos>
-			</object>
-			<object class="wxButton" name="ID_BUTTON6" variable="Button6" member="yes">
-				<label>Label</label>
-				<pos>256,40</pos>
+			<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+						<rows>2</rows>
+						<growablecols>0</growablecols>
+						<growablerows>0,1</growablerows>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
+								<cols>2</cols>
+								<rows>1</rows>
+								<growablecols>0,1</growablecols>
+								<growablerows>0</growablerows>
+								<object class="sizeritem">
+									<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+														<object class="sizeritem">
+															<object class="wxBitmapButton" name="ID_BITMAPBUTTON4" variable="BitmapButton4" member="yes">
+																<bitmap stock_id="wxART_NEW" />
+																<default>1</default>
+																<size>24,24</size>
+																<handler function="OnButton2Click" entry="EVT_BUTTON" />
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>1</border>
+														</object>
+														<object class="sizeritem">
+															<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButton2" member="yes">
+																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+																<default>1</default>
+																<size>24,24</size>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>1</border>
+														</object>
+														<object class="sizeritem">
+															<object class="wxBitmapButton" name="ID_BITMAPBUTTON5" variable="BitmapButton5" member="yes">
+																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+																<default>1</default>
+																<size>24,24</size>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>1</border>
+														</object>
+													</object>
+													<flag>wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<option>1</option>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer8" member="no">
+														<object class="sizeritem">
+															<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButton1" member="yes">
+																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+																<size>24,24</size>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>1</border>
+														</object>
+														<object class="sizeritem">
+															<object class="wxBitmapButton" name="ID_BITMAPBUTTON3" variable="BitmapButton3" member="yes">
+																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+																<default>1</default>
+																<size>24,24</size>
+																<focused>1</focused>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>1</border>
+														</object>
+													</object>
+													<flag>wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												</object>
+											</object>
+											<flag>wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										</object>
+										<object class="sizeritem">
+											<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
+												<image_list>&lt;none&gt;</image_list>
+												<tree_items>
+													<item>CommandsTreeCtrl</item>
+													<item>&lt;none&gt;</item>
+												</tree_items>
+												<items_text>
+													<item2>CommandsTreeCtrl</item2>
+													<item2>&lt;none&gt;</item2>
+												</items_text>
+											</object>
+											<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>1</border>
+											<option>1</option>
+										</object>
+									</object>
+									<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+										<object class="spacer">
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+											<size>553,394</size>
+										</object>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+								<object class="spacer">
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+					</object>
+					<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+					<border>5</border>
+					<option>1</option>
+				</object>
 			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
@@ -90,6 +164,7 @@
 			<fields>1</fields>
 			<widths>-1</widths>
 			<styles>wxSB_NORMAL</styles>
+			<style>wxST_SIZEGRIP</style>
 		</object>
 		<object class="wxImageList" variable="ItemStatesImageList" member="yes">
 			<image_list>
@@ -240,16 +315,117 @@
 			</image_text>
 			<image_count>2</image_count>
 		</object>
-		<object class="wxImageList" variable="ImageList2" member="yes">
+		<object class="wxImageList" variable="ToolBarImageList" member="yes">
 			<image_list>
 				<item>16</item>
 				<item>16</item>
+				<item>static const char *xpm_data[] = {</item>
+				<item>&quot;16 16 30 1&quot;,</item>
+				<item>&quot;w c Black&quot;,</item>
+				<item>&quot;= c #97C4E7&quot;,</item>
+				<item>&quot;; c #72A8D2&quot;,</item>
+				<item>&quot;&gt; c #FFFFFF&quot;,</item>
+				<item>&quot;0 c #839CB5&quot;,</item>
+				<item>&quot;o c #6B98B8&quot;,</item>
+				<item>&quot;X c #5A89A6&quot;,</item>
+				<item>&quot;# c #3A749C&quot;,</item>
+				<item>&quot;&lt; c #D1E5F5&quot;,</item>
+				<item>&quot;q c #85A7BC&quot;,</item>
+				<item>&quot;$ c #C3DDF1&quot;,</item>
+				<item>&quot;9 c #749BB4&quot;,</item>
+				<item>&quot;: c #5F9BC8&quot;,</item>
+				<item>&quot;+ c #538DB3&quot;,</item>
+				<item>&quot;- c #85BBE2&quot;,</item>
+				<item>&quot;4 c #EFF6FC&quot;,</item>
+				<item>&quot;O c #6591AE&quot;,</item>
+				<item>&quot;6 c #F7FBFD&quot;,</item>
+				<item>&quot;8 c #FAFCFE&quot;,</item>
+				<item>&quot;1 c #DAEAF7&quot;,</item>
+				<item>&quot;5 c #E9F3FA&quot;,</item>
+				<item>&quot;_ c None&quot;,</item>
+				<item>&quot;7 c #FDFDFE&quot;,</item>
+				<item>&quot;2 c #E2EFF8&quot;,</item>
+				<item>&quot;. c #8EA9BC&quot;,</item>
+				<item>&quot;&amp; c #B6D5EE&quot;,</item>
+				<item>&quot;* c #A5CCEA&quot;,</item>
+				<item>&quot;, c #ACE95B&quot;,</item>
+				<item>&quot;3 c #F4F9FD&quot;,</item>
+				<item>&quot;@ c #4581AA&quot;,</item>
+				<item>&quot;___.XoOO+@#.____&quot;,</item>
+				<item>&quot;___.$$&amp;*=-O;:___&quot;,</item>
+				<item>&quot;__@@@@$&amp;*=O&gt;=o__&quot;,</item>
+				<item>&quot;__@,,@$$&amp;*O&gt;&gt;=o_&quot;,</item>
+				<item>&quot;@@@,,@@@$&amp;OOoO+_&quot;,</item>
+				<item>&quot;@,,,,,,@&lt;$&amp;*=-+_&quot;,</item>
+				<item>&quot;@,,,,,,@1&lt;$&amp;*=+_&quot;,</item>
+				<item>&quot;@@@,,@@@21&lt;$&amp;*O_&quot;,</item>
+				<item>&quot;__@,,@34521&lt;$&amp;O_&quot;,</item>
+				<item>&quot;__@@@@634521&lt;$o_&quot;,</item>
+				<item>&quot;___.&gt;78634521&lt;9_&quot;,</item>
+				<item>&quot;___.&gt;&gt;786345219_&quot;,</item>
+				<item>&quot;___.&gt;&gt;&gt;78634520_&quot;,</item>
+				<item>&quot;___.&gt;&gt;&gt;&gt;786345q_&quot;,</item>
+				<item>&quot;___............_&quot;,</item>
+				<item>&quot;wwwwwwwwwwwwwwww&quot;</item>
+				<item>};</item>
 			</image_list>
 			<image_text>
 				<item2>16</item2>
 				<item2>16</item2>
+				<item2>static const char *xpm_data[] = {</item2>
+				<item2>&quot;16 16 30 1&quot;,</item2>
+				<item2>&quot;w c Black&quot;,</item2>
+				<item2>&quot;= c #97C4E7&quot;,</item2>
+				<item2>&quot;; c #72A8D2&quot;,</item2>
+				<item2>&quot;&gt; c #FFFFFF&quot;,</item2>
+				<item2>&quot;0 c #839CB5&quot;,</item2>
+				<item2>&quot;o c #6B98B8&quot;,</item2>
+				<item2>&quot;X c #5A89A6&quot;,</item2>
+				<item2>&quot;# c #3A749C&quot;,</item2>
+				<item2>&quot;&lt; c #D1E5F5&quot;,</item2>
+				<item2>&quot;q c #85A7BC&quot;,</item2>
+				<item2>&quot;$ c #C3DDF1&quot;,</item2>
+				<item2>&quot;9 c #749BB4&quot;,</item2>
+				<item2>&quot;: c #5F9BC8&quot;,</item2>
+				<item2>&quot;+ c #538DB3&quot;,</item2>
+				<item2>&quot;- c #85BBE2&quot;,</item2>
+				<item2>&quot;4 c #EFF6FC&quot;,</item2>
+				<item2>&quot;O c #6591AE&quot;,</item2>
+				<item2>&quot;6 c #F7FBFD&quot;,</item2>
+				<item2>&quot;8 c #FAFCFE&quot;,</item2>
+				<item2>&quot;1 c #DAEAF7&quot;,</item2>
+				<item2>&quot;5 c #E9F3FA&quot;,</item2>
+				<item2>&quot;_ c None&quot;,</item2>
+				<item2>&quot;7 c #FDFDFE&quot;,</item2>
+				<item2>&quot;2 c #E2EFF8&quot;,</item2>
+				<item2>&quot;. c #8EA9BC&quot;,</item2>
+				<item2>&quot;&amp; c #B6D5EE&quot;,</item2>
+				<item2>&quot;* c #A5CCEA&quot;,</item2>
+				<item2>&quot;, c #ACE95B&quot;,</item2>
+				<item2>&quot;3 c #F4F9FD&quot;,</item2>
+				<item2>&quot;@ c #4581AA&quot;,</item2>
+				<item2>&quot;___.XoOO+@#.____&quot;,</item2>
+				<item2>&quot;___.$$&amp;*=-O;:___&quot;,</item2>
+				<item2>&quot;__@@@@$&amp;*=O&gt;=o__&quot;,</item2>
+				<item2>&quot;__@,,@$$&amp;*O&gt;&gt;=o_&quot;,</item2>
+				<item2>&quot;@@@,,@@@$&amp;OOoO+_&quot;,</item2>
+				<item2>&quot;@,,,,,,@&lt;$&amp;*=-+_&quot;,</item2>
+				<item2>&quot;@,,,,,,@1&lt;$&amp;*=+_&quot;,</item2>
+				<item2>&quot;@@@,,@@@21&lt;$&amp;*O_&quot;,</item2>
+				<item2>&quot;__@,,@34521&lt;$&amp;O_&quot;,</item2>
+				<item2>&quot;__@@@@634521&lt;$o_&quot;,</item2>
+				<item2>&quot;___.&gt;78634521&lt;9_&quot;,</item2>
+				<item2>&quot;___.&gt;&gt;786345219_&quot;,</item2>
+				<item2>&quot;___.&gt;&gt;&gt;78634520_&quot;,</item2>
+				<item2>&quot;___.&gt;&gt;&gt;&gt;786345q_&quot;,</item2>
+				<item2>&quot;___............_&quot;,</item2>
+				<item2>&quot;wwwwwwwwwwwwwwww&quot;</item2>
+				<item2>};</item2>
 			</image_text>
+			<image_count>1</image_count>
 		</object>
-		<object class="wxToolBar" name="ID_TOOLBAR1" variable="ToolBar" member="yes" />
+		<object class="wxToolBar" name="ID_TOOLBAR1" variable="ToolBar" member="yes">
+			<style>wxTB_FLAT|wxTB_DOCKABLE|wxTB_TEXT</style>
+		</object>
 	</object>
 </wxsmith>

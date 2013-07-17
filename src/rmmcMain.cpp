@@ -16,7 +16,10 @@
 #include <wx/xml/xml.h>
 
 //(*InternalHeaders(rmmcFrame)
+#include <wx/artprov.h>
+#include <wx/bitmap.h>
 #include <wx/intl.h>
+#include <wx/image.h>
 #include <wx/string.h>
 //*)
 
@@ -54,15 +57,12 @@ void TreeItemStateChange(TreeCtrlWithChecks* tree_ctrl, const wxTreeItemId& item
 }
 
 //(*IdInit(rmmcFrame)
+const long rmmcFrame::ID_BITMAPBUTTON4 = wxNewId();
+const long rmmcFrame::ID_BITMAPBUTTON2 = wxNewId();
+const long rmmcFrame::ID_BITMAPBUTTON5 = wxNewId();
+const long rmmcFrame::ID_BITMAPBUTTON1 = wxNewId();
+const long rmmcFrame::ID_BITMAPBUTTON3 = wxNewId();
 const long rmmcFrame::ID_TREECTRL1 = wxNewId();
-const long rmmcFrame::ID_BITMAPCOMBOBOX1 = wxNewId();
-const long rmmcFrame::ID_BUTTON1 = wxNewId();
-const long rmmcFrame::ID_TEXTCTRL1 = wxNewId();
-const long rmmcFrame::ID_BUTTON2 = wxNewId();
-const long rmmcFrame::ID_BUTTON3 = wxNewId();
-const long rmmcFrame::ID_BUTTON4 = wxNewId();
-const long rmmcFrame::ID_BUTTON5 = wxNewId();
-const long rmmcFrame::ID_BUTTON6 = wxNewId();
 const long rmmcFrame::ID_PANEL1 = wxNewId();
 const long rmmcFrame::ID_MENUITEM1 = wxNewId();
 const long rmmcFrame::idMenuAbout = wxNewId();
@@ -70,6 +70,10 @@ const long rmmcFrame::ID_STATUSBAR1 = wxNewId();
 const long rmmcFrame::ID_TOOLBAR1 = wxNewId();
 //*)
 const long rmmcFrame::ID_NEW = wxNewId();
+const long rmmcFrame::ID_NEW_FROM_TEMPLATE = wxNewId();
+const long rmmcFrame::ID_LOAD = wxNewId();
+const long rmmcFrame::ID_SAVE = wxNewId();
+const long rmmcFrame::ID_SAVE_AS = wxNewId();
 
 BEGIN_EVENT_TABLE(rmmcFrame,wxFrame)
 	//(*EventTable(rmmcFrame)
@@ -78,25 +82,69 @@ END_EVENT_TABLE()
 
 rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	//(*Initialize(rmmcFrame)
+	wxBoxSizer* BoxSizer4;
+	wxBoxSizer* BoxSizer6;
+	wxBoxSizer* BoxSizer5;
+	wxBoxSizer* BoxSizer8;
 	wxMenuItem* MenuItem2;
 	wxMenuItem* MenuItem1;
+	wxFlexGridSizer* FlexGridSizer2;
+	wxBoxSizer* BoxSizer2;
 	wxMenu* Menu1;
+	wxBoxSizer* BoxSizer1;
 	wxMenuBar* MenuBar1;
+	wxFlexGridSizer* FlexGridSizer1;
+	wxBoxSizer* BoxSizer3;
 	wxMenu* Menu2;
 
 	Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(1040,740));
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(448,320), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxPoint(8,64), wxSize(320,440), wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
-	CommandsTreeCtrl->ExpandAll();
-	BitmapComboBox1 = new wxBitmapComboBox(Panel1, ID_BITMAPCOMBOBOX1, wxEmptyString, wxPoint(896,24), wxDefaultSize, 0, NULL, 0, wxDefaultValidator, _T("ID_BITMAPCOMBOBOX1"));
-	Button1 = new wxButton(Panel1, ID_BUTTON1, _("Label"), wxPoint(872,432), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-	TextCtrl1 = new wxTextCtrl(Panel1, ID_TEXTCTRL1, wxEmptyString, wxPoint(760,64), wxSize(264,352), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-	Button2 = new wxButton(Panel1, ID_BUTTON2, _("Label"), wxPoint(8,504), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
-	Button3 = new wxButton(Panel1, ID_BUTTON3, _("Label"), wxPoint(120,504), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
-	Button4 = new wxButton(Panel1, ID_BUTTON4, _("Label"), wxPoint(8,40), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
-	Button5 = new wxButton(Panel1, ID_BUTTON5, _("Label"), wxPoint(88,40), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
-	Button6 = new wxButton(Panel1, ID_BUTTON6, _("Label"), wxPoint(256,40), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON6"));
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	FlexGridSizer1 = new wxFlexGridSizer(2, 0, 0, 0);
+	FlexGridSizer1->AddGrowableCol(0);
+	FlexGridSizer1->AddGrowableRow(0);
+	FlexGridSizer1->AddGrowableRow(1);
+	FlexGridSizer2 = new wxFlexGridSizer(1, 2, 0, 0);
+	FlexGridSizer2->AddGrowableCol(0);
+	FlexGridSizer2->AddGrowableCol(1);
+	FlexGridSizer2->AddGrowableRow(0);
+	BoxSizer2 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
+	BitmapButton4 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON4, wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_NEW")),wxART_BUTTON), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON4"));
+	BitmapButton4->SetDefault();
+	BoxSizer6->Add(BitmapButton4, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	BitmapButton2 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON2, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON2"));
+	BitmapButton2->SetDefault();
+	BoxSizer6->Add(BitmapButton2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	BitmapButton5 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON5, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON5"));
+	BitmapButton5->SetDefault();
+	BoxSizer6->Add(BitmapButton5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	BoxSizer5->Add(BoxSizer6, 1, wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
+	BitmapButton1 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON1, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON1"));
+	BoxSizer8->Add(BitmapButton1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	BitmapButton3 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON3, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON3"));
+	BitmapButton3->SetDefault();
+	BitmapButton3->SetFocus();
+	BoxSizer8->Add(BitmapButton3, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
+	BoxSizer5->Add(BoxSizer8, 0, wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer2->Add(BoxSizer5, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
+	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	FlexGridSizer2->Add(BoxSizer2, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer3->Add(553,394,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer2->Add(BoxSizer3, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer4->Add(-1,-1,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer1->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(FlexGridSizer1, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	Panel1->SetSizer(BoxSizer1);
+	BoxSizer1->Fit(Panel1);
+	BoxSizer1->SetSizeHints(Panel1);
 	MenuBar1 = new wxMenuBar();
 	Menu1 = new wxMenu();
 	MenuItem1 = new wxMenuItem(Menu1, ID_MENUITEM1, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
@@ -107,7 +155,7 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	Menu2->Append(MenuItem2);
 	MenuBar1->Append(Menu2, _("Help"));
 	SetMenuBar(MenuBar1);
-	StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
+	StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, wxST_SIZEGRIP, _T("ID_STATUSBAR1"));
 	int __wxStatusBarWidths_1[1] = { -1 };
 	int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
 	StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
@@ -185,13 +233,59 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ItemStatesImageList = new wxImageList(16, 16, 3);
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_0_XPM));
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_1_XPM));
-	ImageList2 = new wxImageList(16, 16, 1);
+	static const char *ToolBarImageList_0_XPM[] = {
+	"16 16 30 1",
+	"w c Black",
+	"= c #97C4E7",
+	"; c #72A8D2",
+	"> c #FFFFFF",
+	"0 c #839CB5",
+	"o c #6B98B8",
+	"X c #5A89A6",
+	"# c #3A749C",
+	"< c #D1E5F5",
+	"q c #85A7BC",
+	"$ c #C3DDF1",
+	"9 c #749BB4",
+	": c #5F9BC8",
+	"+ c #538DB3",
+	"- c #85BBE2",
+	"4 c #EFF6FC",
+	"O c #6591AE",
+	"6 c #F7FBFD",
+	"8 c #FAFCFE",
+	"1 c #DAEAF7",
+	"5 c #E9F3FA",
+	"_ c None",
+	"7 c #FDFDFE",
+	"2 c #E2EFF8",
+	". c #8EA9BC",
+	"& c #B6D5EE",
+	"* c #A5CCEA",
+	", c #ACE95B",
+	"3 c #F4F9FD",
+	"@ c #4581AA",
+	"___.XoOO+@#.____",
+	"___.$$&*=-O;:___",
+	"__@@@@$&*=O>=o__",
+	"__@,,@$$&*O>>=o_",
+	"@@@,,@@@$&OOoO+_",
+	"@,,,,,,@<$&*=-+_",
+	"@,,,,,,@1<$&*=+_",
+	"@@@,,@@@21<$&*O_",
+	"__@,,@34521<$&O_",
+	"__@@@@634521<$o_",
+	"___.>78634521<9_",
+	"___.>>786345219_",
+	"___.>>>78634520_",
+	"___.>>>>786345q_",
+	"___............_",
+	"wwwwwwwwwwwwwwww"
+	};
+	ToolBarImageList = new wxImageList(16, 16, 2);
+	ToolBarImageList->Add(wxBitmap(ToolBarImageList_0_XPM));
 
-	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_DRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
-	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_RDRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
-
-	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
-	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton3Click);
+	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnQuit);
 	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnAbout);
 	//*)
@@ -201,8 +295,14 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
     CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
 	CommandsTreeCtrl->OnStateChange = &TreeItemStateChange;
 
-	ToolBar = CreateToolBar(wxBORDER_NONE|wxTB_HORIZONTAL, wxID_ANY);
-	ToolBar->AddTool(ID_NEW, "New", wxBitmap(ItemStatesImageList_0_XPM));
+	Connect(ID_NEW,wxEVT_COMMAND_TOOL_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
+
+	ToolBar = CreateToolBar(/*wxBORDER_NONE|wxTB_HORIZONTAL*/wxTB_FLAT | wxTB_DOCKABLE/* | wxTB_TEXT*/, wxID_ANY);
+	ToolBar->AddTool(ID_NEW, wxString::FromUTF8Unchecked(_("Новый")), wxArtProvider::GetBitmap(wxART_NEW, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_NEW_FROM_TEMPLATE, wxString::FromUTF8Unchecked(_("Из шаблона")), wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_BUTTON, wxSize(24,24)), (wxString)wxEmptyString, wxITEM_DROPDOWN);
+	ToolBar->AddTool(ID_LOAD, wxString::FromUTF8Unchecked(_("Открыть")), wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_SAVE, wxString::FromUTF8Unchecked(_("Сохранить")), wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_SAVE_AS, wxString::FromUTF8Unchecked(_("Сохранить как")), wxArtProvider::GetBitmap(wxART_FILE_SAVE_AS, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->Realize();
 	//CommandsTreeCtrl->Connect(wxEVT_UPDATE_UI, wxUpdateUIEventHandler(rmmcFrame::UpdateUi), NULL, this);
 }

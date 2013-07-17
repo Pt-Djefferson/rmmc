@@ -1,7 +1,6 @@
 #ifndef RADIALMENUCONFIG_H
 #define RADIALMENUCONFIG_H
 
-//test
 #include <wx/xml/xml.h>
 #include <wx/sstream.h>
 #include <wx/treectrl.h>

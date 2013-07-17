@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
-				<Option projectLinkerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="0" />
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="$(#WX)/lib/gcc_lib/mswu" />
@@ -20,6 +20,8 @@
 					<Add directory="$(#WX)/lib/gcc_lib/mswu" />
 				</ResourceCompiler>
 				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="libwxmsw29u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxjpeg.a" />
@@ -34,7 +36,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
-				<Option projectLinkerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="0" />
 				<Compiler>
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-fexpensive-optimizations" />
@@ -47,6 +49,8 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="libwxmsw29u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxjpeg.a" />
@@ -66,6 +70,7 @@
 			<Add option="-include wx_pch.h" />
 			<Add option="-std=gnu++11" />
 			<Add option="-fexceptions" />
+			<Add option="`wx-config --cflags`" />
 			<Add option="-D__GNUWIN32__" />
 			<Add option="-D__WXMSW__" />
 			<Add option="-DwxUSE_UNICODE" />
@@ -81,8 +86,7 @@
 		<Linker>
 			<Add option="-mthreads" />
 			<Add option="-static" />
-			<Add option="-static-libgcc" />
-			<Add option="-static-libstdc++" />
+			<Add option="`wx-config --libs`" />
 			<Add library="libkernel32.a" />
 			<Add library="libuser32.a" />
 			<Add library="libgdi32.a" />

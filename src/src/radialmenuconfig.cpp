@@ -1,5 +1,4 @@
 #include "radialmenuconfig.h"
-//test
 
 void FillTreeCtrlNodeWithXMLData(wxTreeCtrl* tree_ctrl, wxTreeItemId* parent_id, wxXmlNode* parent_xml_node, const bool skip_parent) {
     wxTreeItemId last_id;

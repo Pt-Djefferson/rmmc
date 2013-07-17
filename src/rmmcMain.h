@@ -12,18 +12,18 @@
 
 //(*Headers(rmmcFrame)
 #include <wx/treectrl.h>
+#include <wx/sizer.h>
 #include <wx/menu.h>
-#include <wx/textctrl.h>
 #include <wx/toolbar.h>
 #include <wx/panel.h>
-#include <wx/bmpcbox.h>
+#include <wx/bmpbuttn.h>
 #include <wx/imaglist.h>
-#include <wx/button.h>
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 //*)
 #include "radialmenuconfig.h"
 #include "treectrlwithchecks.h"
+#include <wx/artprov.h>
 //#include <wx/event.h>
 
 
@@ -46,15 +46,12 @@ private:
 	//*)
 
 	//(*Identifiers(rmmcFrame)
+	static const long ID_BITMAPBUTTON4;
+	static const long ID_BITMAPBUTTON2;
+	static const long ID_BITMAPBUTTON5;
+	static const long ID_BITMAPBUTTON1;
+	static const long ID_BITMAPBUTTON3;
 	static const long ID_TREECTRL1;
-	static const long ID_BITMAPCOMBOBOX1;
-	static const long ID_BUTTON1;
-	static const long ID_TEXTCTRL1;
-	static const long ID_BUTTON2;
-	static const long ID_BUTTON3;
-	static const long ID_BUTTON4;
-	static const long ID_BUTTON5;
-	static const long ID_BUTTON6;
 	static const long ID_PANEL1;
 	static const long ID_MENUITEM1;
 	static const long idMenuAbout;
@@ -62,21 +59,22 @@ private:
 	static const long ID_TOOLBAR1;
 	//*)
 	static const long ID_NEW;
+	static const long ID_NEW_FROM_TEMPLATE;
+	static const long ID_LOAD;
+	static const long ID_SAVE;
+	static const long ID_SAVE_AS;
 
 	//(*Declarations(rmmcFrame)
-	wxBitmapComboBox* BitmapComboBox1;
-	wxButton* Button4;
-	wxButton* Button1;
-	wxImageList* ImageList2;
+	wxBitmapButton* BitmapButton5;
 	TreeCtrlWithChecks* CommandsTreeCtrl;
 	wxPanel* Panel1;
-	wxButton* Button2;
-	wxButton* Button6;
-	wxButton* Button5;
-	wxButton* Button3;
+	wxBitmapButton* BitmapButton2;
+	wxBitmapButton* BitmapButton1;
+	wxImageList* ToolBarImageList;
 	wxStatusBar* StatusBar1;
 	wxImageList* ItemStatesImageList;
-	wxTextCtrl* TextCtrl1;
+	wxBitmapButton* BitmapButton4;
+	wxBitmapButton* BitmapButton3;
 	wxToolBar* ToolBar;
 	//*)
 
