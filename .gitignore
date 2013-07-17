@@ -215,19 +215,12 @@ pip-log.txt
 .mr.developer.cfg
 
 #############
-## CodeLite
+## CodeBlocks
 #############
-
-.clang/
-compilation.db
-Makefile
-*.tags
-*.mk
-*.txt
-*.gch
-*.session
+*build_log.html
+wx_pch.h.gch/
 
 #############
 ## rmmc
 #############
-icons/
+

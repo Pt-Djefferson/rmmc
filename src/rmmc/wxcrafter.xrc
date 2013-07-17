@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+  <object class="wxFrame" name="MainFrameBaseClass">
+    <title>My Frame</title>
+    <centered>1</centered>
+    <style>wxCAPTION|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxCLOSE_BOX</style>
+    <size>500,300</size>
+    <object class="wxBoxSizer">
+      <orient>wxVERTICAL</orient>
+      <object class="sizeritem">
+        <flag>wxEXPAND</flag>
+        <border>5</border>
+        <option>1</option>
+        <object class="wxPanel" name="m_mainPanel">
+          <style>wxTAB_TRAVERSAL</style>
+        </object>
+      </object>
+    </object>
+    <object class="wxMenuBar" name="m_menuBar">
+      <style/>
+      <object class="wxMenu" name="m_name6">
+        <label>File</label>
+        <style/>
+        <object class="wxMenuItem" name="m_menuItem7">
+          <label>Exit</label>
+          <accel>Alt-X</accel>
+        </object>
+      </object>
+      <object class="wxMenu" name="m_name8">
+        <label>Help</label>
+        <style/>
+        <object class="wxMenuItem" name="m_menuItem9">
+          <label>About...</label>
+          <accel/>
+        </object>
+      </object>
+    </object>
+    <object class="wxToolBar" name="m_mainToolbar">
+      <style>wxTB_FLAT</style>
+      <bitmapsize>16,16</bitmapsize>
+      <object class="tool" name="m_toolbarItem11">
+        <label>Title</label>
+        <longhelp/>
+        <bitmap>icons/placeholder16.png</bitmap>
+      </object>
+      <object class="tool" name="m_toolbarItem13">
+        <label>Tool Label</label>
+        <longhelp/>
+        <bitmap/>
+      </object>
+      <object class="tool" name="m_toolbarItem15">
+        <label>Tool Label</label>
+        <longhelp/>
+        <bitmap>icons/placeholder16.png</bitmap>
+      </object>
+    </object>
+  </object>
+</resource>

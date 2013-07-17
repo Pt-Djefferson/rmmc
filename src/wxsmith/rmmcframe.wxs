@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="rmmcFrame">
+		<size>1040,740</size>
+		<id_arg>0</id_arg>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>448,320</pos>
+			<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
+				<image_list></image_list>
+				<tree_items>
+					<item>CommandsTreeCtrl</item>
+					<item></item>
+				</tree_items>
+				<items_text>
+					<item2>CommandsTreeCtrl</item2>
+					<item2></item2>
+				</items_text>
+				<expand_all>1</expand_all>
+				<pos>8,64</pos>
+				<size>320,440</size>
+				<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
+				<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_DRAG" />
+				<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_RDRAG" />
+			</object>
+			<object class="wxBitmapComboBox" name="ID_BITMAPCOMBOBOX1" variable="BitmapComboBox1" member="yes">
+				<mImageList>&lt;none&gt;</mImageList>
+				<mItems>
+					<item>BitmapComboBox1</item>
+					<item>&lt;none&gt;</item>
+				</mItems>
+				<mItemsText>
+					<item2>BitmapComboBox1</item2>
+					<item2>&lt;none&gt;</item2>
+				</mItemsText>
+				<pos>896,24</pos>
+			</object>
+			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+				<label>Label</label>
+				<pos>872,432</pos>
+			</object>
+			<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+				<pos>760,64</pos>
+				<size>264,352</size>
+				<style>wxTE_MULTILINE</style>
+			</object>
+			<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
+				<label>Label</label>
+				<pos>8,504</pos>
+				<handler function="OnButton2Click" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
+				<label>Label</label>
+				<pos>120,504</pos>
+				<handler function="OnButton3Click" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON4" variable="Button4" member="yes">
+				<label>Label</label>
+				<pos>8,40</pos>
+			</object>
+			<object class="wxButton" name="ID_BUTTON5" variable="Button5" member="yes">
+				<label>Label</label>
+				<pos>88,40</pos>
+			</object>
+			<object class="wxButton" name="ID_BUTTON6" variable="Button6" member="yes">
+				<label>Label</label>
+				<pos>256,40</pos>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu1" member="no">
+				<label>&amp;File</label>
+				<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="no">
+					<label>Quit</label>
+					<accel>Alt-F4</accel>
+					<help>Quit the application</help>
+					<handler function="OnQuit" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Help</label>
+				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+					<label>About</label>
+					<accel>F1</accel>
+					<help>Show info about this application</help>
+					<handler function="OnAbout" entry="EVT_MENU" />
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
+			<fields>1</fields>
+			<widths>-1</widths>
+			<styles>wxSB_NORMAL</styles>
+		</object>
+		<object class="wxImageList" variable="ItemStatesImageList" member="yes">
+			<image_list>
+				<item>16</item>
+				<item>16</item>
+				<item>static const char *xpm_data[] = {</item>
+				<item>&quot;16 16 6 1&quot;,</item>
+				<item>&quot;+ c #FFFFFF&quot;,</item>
+				<item>&quot;o c #DADADA&quot;,</item>
+				<item>&quot;O c #F4F4F4&quot;,</item>
+				<item>&quot;_ c None&quot;,</item>
+				<item>&quot;X c #E0E0E0&quot;,</item>
+				<item>&quot;. c #9D9D9D&quot;,</item>
+				<item>&quot;________________&quot;,</item>
+				<item>&quot;________________&quot;,</item>
+				<item>&quot;___...........__&quot;,</item>
+				<item>&quot;__.XXXXXXXXXXo._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.XOOOOOOOOO+._&quot;,</item>
+				<item>&quot;__.o++++++++++._&quot;,</item>
+				<item>&quot;___...........__&quot;,</item>
+				<item>&quot;________________&quot;</item>
+				<item>};</item>
+				<item>static const char *xpm_data[] = {</item>
+				<item>&quot;16 16 25 1&quot;,</item>
+				<item>&quot;= c Black&quot;,</item>
+				<item>&quot;1 c #1E1E1E&quot;,</item>
+				<item>&quot;@ c #FFFFFF&quot;,</item>
+				<item>&quot;5 c #444444&quot;,</item>
+				<item>&quot;o c #DADADA&quot;,</item>
+				<item>&quot;# c #818181&quot;,</item>
+				<item>&quot;: c #909090&quot;,</item>
+				<item>&quot;+ c #DBDBDB&quot;,</item>
+				<item>&quot;&amp; c #737373&quot;,</item>
+				<item>&quot;2 c #BEBEBE&quot;,</item>
+				<item>&quot;4 c #121212&quot;,</item>
+				<item>&quot;; c #6C6C6C&quot;,</item>
+				<item>&quot;7 c #8A8A8A&quot;,</item>
+				<item>&quot;6 c #DDDDDD&quot;,</item>
+				<item>&quot;O c #F4F4F4&quot;,</item>
+				<item>&quot;, c #7D7D7D&quot;,</item>
+				<item>&quot;&gt; c #C8C8C8&quot;,</item>
+				<item>&quot;3 c #676767&quot;,</item>
+				<item>&quot;- c #B2B2B2&quot;,</item>
+				<item>&quot;_ c None&quot;,</item>
+				<item>&quot;* c #C1C1C1&quot;,</item>
+				<item>&quot;$ c #424242&quot;,</item>
+				<item>&quot;&lt; c #A4A4A4&quot;,</item>
+				<item>&quot;X c #E0E0E0&quot;,</item>
+				<item>&quot;. c #9D9D9D&quot;,</item>
+				<item>&quot;________________&quot;,</item>
+				<item>&quot;________________&quot;,</item>
+				<item>&quot;___...........__&quot;,</item>
+				<item>&quot;__.XXXXXXXXXXo._&quot;,</item>
+				<item>&quot;__.XOOOOOOOO+@._&quot;,</item>
+				<item>&quot;__.XOOOOOOO#$@._&quot;,</item>
+				<item>&quot;__.XOOOOOO&amp;$*@._&quot;,</item>
+				<item>&quot;__.XOOOOO&amp;=-O@._&quot;,</item>
+				<item>&quot;__.XO;:O&gt;=&amp;OO@._&quot;,</item>
+				<item>&quot;__.X,==&lt;$12OO@._&quot;,</item>
+				<item>&quot;__.XO34==5OOO@._&quot;,</item>
+				<item>&quot;__.XO6&lt;4=7OOO@._&quot;,</item>
+				<item>&quot;__.XOOO:$oOOO@._&quot;,</item>
+				<item>&quot;__.o@@@@@@@@@@._&quot;,</item>
+				<item>&quot;___...........__&quot;,</item>
+				<item>&quot;________________&quot;</item>
+				<item>};</item>
+			</image_list>
+			<image_text>
+				<item2>16</item2>
+				<item2>16</item2>
+				<item2>static const char *xpm_data[] = {</item2>
+				<item2>&quot;16 16 6 1&quot;,</item2>
+				<item2>&quot;+ c #FFFFFF&quot;,</item2>
+				<item2>&quot;o c #DADADA&quot;,</item2>
+				<item2>&quot;O c #F4F4F4&quot;,</item2>
+				<item2>&quot;_ c None&quot;,</item2>
+				<item2>&quot;X c #E0E0E0&quot;,</item2>
+				<item2>&quot;. c #9D9D9D&quot;,</item2>
+				<item2>&quot;________________&quot;,</item2>
+				<item2>&quot;________________&quot;,</item2>
+				<item2>&quot;___...........__&quot;,</item2>
+				<item2>&quot;__.XXXXXXXXXXo._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOOO+._&quot;,</item2>
+				<item2>&quot;__.o++++++++++._&quot;,</item2>
+				<item2>&quot;___...........__&quot;,</item2>
+				<item2>&quot;________________&quot;</item2>
+				<item2>};</item2>
+				<item2>static const char *xpm_data[] = {</item2>
+				<item2>&quot;16 16 25 1&quot;,</item2>
+				<item2>&quot;= c Black&quot;,</item2>
+				<item2>&quot;1 c #1E1E1E&quot;,</item2>
+				<item2>&quot;@ c #FFFFFF&quot;,</item2>
+				<item2>&quot;5 c #444444&quot;,</item2>
+				<item2>&quot;o c #DADADA&quot;,</item2>
+				<item2>&quot;# c #818181&quot;,</item2>
+				<item2>&quot;: c #909090&quot;,</item2>
+				<item2>&quot;+ c #DBDBDB&quot;,</item2>
+				<item2>&quot;&amp; c #737373&quot;,</item2>
+				<item2>&quot;2 c #BEBEBE&quot;,</item2>
+				<item2>&quot;4 c #121212&quot;,</item2>
+				<item2>&quot;; c #6C6C6C&quot;,</item2>
+				<item2>&quot;7 c #8A8A8A&quot;,</item2>
+				<item2>&quot;6 c #DDDDDD&quot;,</item2>
+				<item2>&quot;O c #F4F4F4&quot;,</item2>
+				<item2>&quot;, c #7D7D7D&quot;,</item2>
+				<item2>&quot;&gt; c #C8C8C8&quot;,</item2>
+				<item2>&quot;3 c #676767&quot;,</item2>
+				<item2>&quot;- c #B2B2B2&quot;,</item2>
+				<item2>&quot;_ c None&quot;,</item2>
+				<item2>&quot;* c #C1C1C1&quot;,</item2>
+				<item2>&quot;$ c #424242&quot;,</item2>
+				<item2>&quot;&lt; c #A4A4A4&quot;,</item2>
+				<item2>&quot;X c #E0E0E0&quot;,</item2>
+				<item2>&quot;. c #9D9D9D&quot;,</item2>
+				<item2>&quot;________________&quot;,</item2>
+				<item2>&quot;________________&quot;,</item2>
+				<item2>&quot;___...........__&quot;,</item2>
+				<item2>&quot;__.XXXXXXXXXXo._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOOO+@._&quot;,</item2>
+				<item2>&quot;__.XOOOOOOO#$@._&quot;,</item2>
+				<item2>&quot;__.XOOOOOO&amp;$*@._&quot;,</item2>
+				<item2>&quot;__.XOOOOO&amp;=-O@._&quot;,</item2>
+				<item2>&quot;__.XO;:O&gt;=&amp;OO@._&quot;,</item2>
+				<item2>&quot;__.X,==&lt;$12OO@._&quot;,</item2>
+				<item2>&quot;__.XO34==5OOO@._&quot;,</item2>
+				<item2>&quot;__.XO6&lt;4=7OOO@._&quot;,</item2>
+				<item2>&quot;__.XOOO:$oOOO@._&quot;,</item2>
+				<item2>&quot;__.o@@@@@@@@@@._&quot;,</item2>
+				<item2>&quot;___...........__&quot;,</item2>
+				<item2>&quot;________________&quot;</item2>
+				<item2>};</item2>
+			</image_text>
+			<image_count>2</image_count>
+		</object>
+		<object class="wxImageList" variable="ImageList2" member="yes">
+			<image_list>
+				<item>16</item>
+				<item>16</item>
+			</image_list>
+			<image_text>
+				<item2>16</item2>
+				<item2>16</item2>
+			</image_text>
+		</object>
+		<object class="wxToolBar" name="ID_TOOLBAR1" variable="ToolBar" member="yes" />
+	</object>
+</wxsmith>
