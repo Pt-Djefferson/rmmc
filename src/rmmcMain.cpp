@@ -99,7 +99,7 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 
 	Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(1040,740));
-	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(448,320), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(448,320), wxDefaultSize, wxSIMPLE_BORDER|wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	FlexGridSizer1 = new wxFlexGridSizer(2, 0, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
@@ -131,17 +131,17 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BoxSizer8->Add(BitmapButton3, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
 	BoxSizer5->Add(BoxSizer8, 0, wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer2->Add(BoxSizer5, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
+	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HIDE_ROOT|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
 	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
-	FlexGridSizer2->Add(BoxSizer2, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer2->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer3->Add(553,394,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer2->Add(BoxSizer3, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	FlexGridSizer2->Add(BoxSizer3, 1, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer1->Add(FlexGridSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer4->Add(-1,-1,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer1->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	BoxSizer1->Add(FlexGridSizer1, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(FlexGridSizer1, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	Panel1->SetSizer(BoxSizer1);
 	BoxSizer1->Fit(Panel1);
 	BoxSizer1->SetSizeHints(Panel1);
@@ -300,6 +300,13 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ToolBar = CreateToolBar(/*wxBORDER_NONE|wxTB_HORIZONTAL*/wxTB_FLAT | wxTB_DOCKABLE/* | wxTB_TEXT*/, wxID_ANY);
 	ToolBar->AddTool(ID_NEW, wxString::FromUTF8Unchecked(_("Новый")), wxArtProvider::GetBitmap(wxART_NEW, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->AddTool(ID_NEW_FROM_TEMPLATE, wxString::FromUTF8Unchecked(_("Из шаблона")), wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_BUTTON, wxSize(24,24)), (wxString)wxEmptyString, wxITEM_DROPDOWN);
+    wxMenu* drop_menu = new wxMenu;
+    drop_menu->Append(wxID_ANY, wxT("&First dummy item"));
+    drop_menu->Append(wxID_ANY, wxT("&Second dummy item"));
+    //drop_menu->AppendSeparator();
+    //drop_menu->Append(wxID_EXIT, wxT("Exit"));
+    ToolBar->SetDropdownMenu(ID_NEW_FROM_TEMPLATE, drop_menu);
+
 	ToolBar->AddTool(ID_LOAD, wxString::FromUTF8Unchecked(_("Открыть")), wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->AddTool(ID_SAVE, wxString::FromUTF8Unchecked(_("Сохранить")), wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->AddTool(ID_SAVE_AS, wxString::FromUTF8Unchecked(_("Сохранить как")), wxArtProvider::GetBitmap(wxART_FILE_SAVE_AS, wxART_BUTTON, wxSize(24,24)));
@@ -332,15 +339,17 @@ void rmmcFrame::OnButton2Click(wxCommandEvent& event)
     {
         //Маленький хак для подавления сообщения об ошибке
         wxLogNull SilenceExclamationmark;
-        if (!xml_config->Load("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu.xml")) {
-            wxMessageBox(_("Ошибка"), _("Welcome to..."));
+        //if (!xml_config->Load(wxString::FromUTF8Unchecked("resources/templates/Стандартный/RadialMenu.xml"))) {
+        if (!xml_config->Load("resources/templates/Std/RadialMenu.xml")) {
+            wxMessageBox(wxString::FromUTF8Unchecked(_("Ошибка чтения файла")), _("Welcome to..."));
             return;
         }
     }
 
     //CommandsTreeCtrl->DeleteAllItems();
     //FillTreeCtrlNodeWithXMLData(CommandsTreeCtrl, nullptr, xml_config->GetRoot());
-    ParseXMLDataToTreeCtrl(CommandsTreeCtrl, xml_config->GetRoot());
+    //ParseXMLDataToTreeCtrl(CommandsTreeCtrl, xml_config->GetRoot());
+    FillTreeCtrlWithData(CommandsTreeCtrl, xml_config);
 }
 
 void rmmcFrame::OnButton3Click(wxCommandEvent& event)

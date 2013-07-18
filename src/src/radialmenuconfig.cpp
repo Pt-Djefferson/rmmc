@@ -1,6 +1,52 @@
-#include "radialmenuconfig.h"
+﻿#include "radialmenuconfig.h"
+
+//djfXmlNodeTitles djfXmlNodeTitle;
+
+void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
+    if (tree_ctrl == nullptr || xml_doc == nullptr) return;
+
+    wxString root_node_name = "RadialMenu.xml";
+    //wxString root_section_name[10] = {"TankMenu", "lightTankMenu", "mediumTankMenu", "heavyTankMenu", "AT-SPGMenu", "SPGMenu", "TankSpecificCommands", "MapCommands", "HotkeyOnlyCommands", "GlobalProperties"};
+    //wxString global_property_name[3] = {"MapMenuKey", "MenuReloadHotkey", "HotkeyCommandDelay"};
+
+    //wxXmlNode* root_node = xml_doc->GetRoot();
+    wxXmlNode* doc_node = xml_doc->GetDocumentNode();
+    djfTreeItemNodeData* root_node_data = new djfTreeItemNodeData(doc_node, root_node_name);
+    if (root_node_data->GetState() == djfItemNodeState::Deleted || root_node_data->GetState() == djfItemNodeState::Commented) {
+        delete root_node_data;
+        wxMessageBox(wxString::FromUTF8Unchecked(_("Ошибка анализа содержимого файла")), _("Welcome to..."));
+        return;
+    }
+    tree_ctrl->DeleteAllItems();
+    /*wxTreeItemId root_id =*/ tree_ctrl->AddRoot(root_node_data->GetTitle(), 0, 0, root_node_data);
+
+#ifdef _comment_
+    wxXmlNode* current_xml_node;
+    for (unsigned int i = 0; i < 9/*10*/; ++i) {
+        current_xml_node = FindXMLNode(root_xml_node, global_section[i]);
+        djfTreeItemData* node_data = nullptr;
+        if (current_xml_node != nullptr) {
+            node_data = new djfTreeItemData(current_xml_node);
+        }
+        wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, global_section_ru[i], -1, -1, node_data);
+        FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
+    }
+
+    wxTreeItemId global_properties_id = tree_ctrl->AppendItem(root_id, global_section_ru[9], -1, -1, nullptr);
+    for (unsigned int i = 0; i < 3; ++i) {
+        current_xml_node = FindXMLNode(root_xml_node, global_properties[i]);
+        djfTreeItemData* node_data = nullptr;
+        if (current_xml_node != nullptr) {
+            node_data = new djfTreeItemData(current_xml_node);
+        }
+        wxTreeItemId last_id = tree_ctrl->AppendItem(global_properties_id, global_properties_ru[i], -1, -1, node_data);
+        FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
+    }
+#endif
+};
 
 void FillTreeCtrlNodeWithXMLData(wxTreeCtrl* tree_ctrl, wxTreeItemId* parent_id, wxXmlNode* parent_xml_node, const bool skip_parent) {
+    if (tree_ctrl== nullptr || parent_xml_node == nullptr) return;
     wxTreeItemId last_id;
     if (!skip_parent) {
         djfTreeItemData* node_data = new djfTreeItemData(parent_xml_node);
@@ -23,6 +69,7 @@ void FillTreeCtrlNodeWithXMLData(wxTreeCtrl* tree_ctrl, wxTreeItemId* parent_id,
 }
 
 wxXmlNode* FindXMLNode(wxXmlNode* start_node, const wxString& node_name) {
+    if (start_node == nullptr) return nullptr;
     wxXmlNode* child = start_node->GetChildren();
     while (child) {
         if (child->GetName() == node_name) return child;
@@ -41,6 +88,7 @@ wxXmlNode* FindXMLNode(wxXmlNode* start_node, const wxString& node_name) {
 }
 
 void ParseXMLDataToTreeCtrl(wxTreeCtrl* tree_ctrl, wxXmlNode* root_xml_node) {
+    if (tree_ctrl == nullptr || root_xml_node == nullptr) return;
     tree_ctrl->DeleteAllItems();
     djfTreeItemData* root_node_data = new djfTreeItemData(root_xml_node);
     wxTreeItemId root_id = tree_ctrl->AddRoot(root_node_data->GetItemTitle(), 0, 0, root_node_data);
@@ -59,7 +107,10 @@ void ParseXMLDataToTreeCtrl(wxTreeCtrl* tree_ctrl, wxXmlNode* root_xml_node) {
     wxXmlNode* current_xml_node;
     for (unsigned int i = 0; i < 9/*10*/; ++i) {
         current_xml_node = FindXMLNode(root_xml_node, global_section[i]);
-        djfTreeItemData* node_data = new djfTreeItemData(current_xml_node);
+        djfTreeItemData* node_data = nullptr;
+        if (current_xml_node != nullptr) {
+            node_data = new djfTreeItemData(current_xml_node);
+        }
         wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, global_section_ru[i], -1, -1, node_data);
         FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
     }
@@ -71,7 +122,10 @@ void ParseXMLDataToTreeCtrl(wxTreeCtrl* tree_ctrl, wxXmlNode* root_xml_node) {
     wxTreeItemId global_properties_id = tree_ctrl->AppendItem(root_id, global_section_ru[9], -1, -1, nullptr);
     for (unsigned int i = 0; i < 3; ++i) {
         current_xml_node = FindXMLNode(root_xml_node, global_properties[i]);
-        djfTreeItemData* node_data = new djfTreeItemData(current_xml_node);
+        djfTreeItemData* node_data = nullptr;
+        if (current_xml_node != nullptr) {
+            node_data = new djfTreeItemData(current_xml_node);
+        }
         wxTreeItemId last_id = tree_ctrl->AppendItem(global_properties_id, global_properties_ru[i], -1, -1, node_data);
         FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
     }
