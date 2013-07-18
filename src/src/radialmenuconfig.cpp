@@ -1,9 +1,38 @@
 ﻿#include "radialmenuconfig.h"
 
-//djfXmlNodeTitles djfXmlNodeTitle;
+wxStringToStringHashMap Title;
+
+void TitlesInit() {
+        Title["RadialMenu.xml"] = wxString::FromUTF8Unchecked(_("Конфигурация"));
+        Title["TankMenu"] = wxString::FromUTF8Unchecked(_("Основные команды"));
+        Title["lightTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для легких танков"));
+        Title["mediumTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для средних танков"));
+        Title["heavyTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для тяжелых танков"));
+        Title["AT-SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для ПТ-САУ"));
+        Title["SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для САУ"));
+        Title["TankSpecificCommands"] = wxString::FromUTF8Unchecked(_("Команды для определенного танка"));
+        Title["MapCommands"] = wxString::FromUTF8Unchecked(_("Команды для карт"));
+        Title["HotkeyOnlyCommands"] = wxString::FromUTF8Unchecked(_("Горячие клавиши"));
+        Title["GlobalProperties"] = wxString::FromUTF8Unchecked(_("Глобальные настройки"));
+        Title["MapMenuKey"] = wxString::FromUTF8Unchecked(_("Клавиша вызова меню карты"));
+        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки конфигурации мода"));
+        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка между обработкой горячих клавиш"));
+}
+
+wxString djfTreeItemNodeData::GetTitle() {
+    if (Title.empty()) TitlesInit();
+    //wxMessageBox(m_xml_node_name + "-" + Title[m_xml_node_name], _("Welcome to..."));
+
+    if (Title.find(m_xml_node_name) == Title.end()) {
+        return m_xml_node_name;
+    } else {
+        return Title[m_xml_node_name];
+    }
+};
 
 void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
     if (tree_ctrl == nullptr || xml_doc == nullptr) return;
+    if (Title.empty()) TitlesInit();
 
     wxString root_node_name = "RadialMenu.xml";
     //wxString root_section_name[10] = {"TankMenu", "lightTankMenu", "mediumTankMenu", "heavyTankMenu", "AT-SPGMenu", "SPGMenu", "TankSpecificCommands", "MapCommands", "HotkeyOnlyCommands", "GlobalProperties"};

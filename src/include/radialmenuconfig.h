@@ -6,60 +6,8 @@
 #include <wx/treectrl.h>
 #include <wx/hashmap.h>
 
-class djfXmlNodeTitles
-{
-public:
-    static const djfXmlNodeTitles& Instance()
-    {
-        static djfXmlNodeTitles theSingleInstance;
-        return theSingleInstance;
-    }
-    static wxStringToStringHashMap Title;
-private:
-    djfXmlNodeTitles(){
-        Title["TankMenu"] = wxString::FromUTF8Unchecked(_("Основные команды"));
-        Title["lightTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для легких танков"));
-        Title["mediumTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для средних танков"));
-        Title["heavyTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для тяжелых танков"));
-        Title["AT-SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для ПТ-САУ"));
-        Title["SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для САУ"));
-        Title["TankSpecificCommands"] = wxString::FromUTF8Unchecked(_("Команды для определенного танка"));
-        Title["MapCommands"] = wxString::FromUTF8Unchecked(_("Команды для карт"));
-        Title["HotkeyOnlyCommands"] = wxString::FromUTF8Unchecked(_("Горячие клавиши"));
-        Title["GlobalProperties"] = wxString::FromUTF8Unchecked(_("Глобальные настройки"));
-        Title["MapMenuKey"] = wxString::FromUTF8Unchecked(_("Клавиша вызова меню карты"));
-        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки конфигурации мода"));
-        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка между обработкой горячих клавиш"));
-    };
-    djfXmlNodeTitles(const djfXmlNodeTitles&/* root*/);
-    djfXmlNodeTitles& operator=(const djfXmlNodeTitles&);
-};
-/*
-class djfXmlNodeTitles {
-public:
-    djfXmlNodeTitles() {
-        Title["TankMenu"] = wxString::FromUTF8Unchecked(_("Основные команды"));
-        Title["lightTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для легких танков"));
-        Title["mediumTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для средних танков"));
-        Title["heavyTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для тяжелых танков"));
-        Title["AT-SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для ПТ-САУ"));
-        Title["SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для САУ"));
-        Title["TankSpecificCommands"] = wxString::FromUTF8Unchecked(_("Команды для определенного танка"));
-        Title["MapCommands"] = wxString::FromUTF8Unchecked(_("Команды для карт"));
-        Title["HotkeyOnlyCommands"] = wxString::FromUTF8Unchecked(_("Горячие клавиши"));
-        Title["GlobalProperties"] = wxString::FromUTF8Unchecked(_("Глобальные настройки"));
-        Title["MapMenuKey"] = wxString::FromUTF8Unchecked(_("Клавиша вызова меню карты"));
-        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки конфигурации мода"));
-        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка между обработкой горячих клавиш"));
-    };
-    ~djfXmlNodeTitles() {};
-    wxStringToStringHashMap Title;
-private:
-    wxDECLARE_NO_COPY_CLASS(djfXmlNodeTitles);
-};
+extern wxStringToStringHashMap Title;
 
-extern djfXmlNodeTitles djfXmlNodeTitle;
-*/
 enum class djfItemNodeState {
     Normal,
     Commented,
@@ -72,13 +20,14 @@ public:
         m_node_state = GetNodeState(parent_xml_node);
     };
     ~djfTreeItemNodeData() {};
-    wxString GetTitle() {
-        if (djfXmlNodeTitles::Title.find(m_xml_node_name) == djfXmlNodeTitles::Title.end()) {
-            return m_xml_node_name;
+    wxString GetTitle();/* {
+        int i = Title.count(m_xml_node_name);
+        if (Title.find(m_xml_node_name) == Title.end()) {
+            return m_xml_node_name << i;
         } else {
-            return djfXmlNodeTitles::Title[m_xml_node_name];
+            return Title[m_xml_node_name];
         }
-    };
+    };*/
     djfItemNodeState GetState() { return m_node_state; };
 private:
     djfItemNodeState GetNodeState(const wxXmlNode* parent_xml_node) {

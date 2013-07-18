@@ -95,7 +95,6 @@
 													<item2>CommandsTreeCtrl</item2>
 													<item2>&lt;none&gt;</item2>
 												</items_text>
-												<style>wxTR_HIDE_ROOT|wxTR_DEFAULT_STYLE</style>
 											</object>
 											<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>1</border>
