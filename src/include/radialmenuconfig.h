@@ -11,13 +11,16 @@ extern wxStringToStringHashMap Title;
 enum class djfItemNodeState {
     Normal,
     Commented,
-    Deleted
+    Properties,
+    Deleted,
+    Unknown
 };
 
 class djfTreeItemNodeData : public wxTreeItemData {
 public:
-    djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name) : m_xml_node_name(xml_node_name) {
+    djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name, wxColour colour = wxNullColour) : m_xml_node_name(xml_node_name), m_colour(colour) {
         m_node_state = GetNodeState(parent_xml_node);
+        m_inherited_state = djfItemNodeState::Unknown;
     };
     ~djfTreeItemNodeData() {};
     wxString GetTitle();/* {
@@ -29,10 +32,24 @@ public:
         }
     };*/
     djfItemNodeState GetState() { return m_node_state; };
+    wxColour GetColour() {
+        djfItemNodeState state = m_inherited_state;
+        if (state == djfItemNodeState::Unknown) state = m_node_state;
+        switch (state) {
+            case djfItemNodeState::Commented:  return m_colour;//*wxYELLOW;
+            case djfItemNodeState::Deleted:    return *wxLIGHT_GREY;
+            //case djfItemNodeState::Normal:     return wxBLACK;
+            case djfItemNodeState::Properties: return *wxBLUE;
+            default: return *wxBLACK;
+        }
+
+    }
 private:
     djfItemNodeState GetNodeState(const wxXmlNode* parent_xml_node) {
+        if (m_xml_node_name == "GlobalProperties") return djfItemNodeState::Properties;
+        test = parent_xml_node->GetName().fn_str();
         wxXmlNode* child = parent_xml_node->GetChildren();
-        if (child == nullptr) return djfItemNodeState::Deleted;
+        //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {
             if (child->GetName() == m_xml_node_name) {
                 return  djfItemNodeState::Normal;
@@ -51,10 +68,15 @@ private:
         return djfItemNodeState::Deleted;
     }
     djfItemNodeState m_node_state;
+    djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
+    const wchar_t* test;
+    wxColour m_colour;
 };
 
-void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc);
+void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour = wxNullColour);
+void TreeItemStateChange(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id);
+
 
 void FillTreeCtrlNodeWithXMLData(wxTreeCtrl* tree_ctrl, wxTreeItemId* parent_id, wxXmlNode* parent_xml_node, const bool skip_parent = false);
 void ParseXMLDataToTreeCtrl(wxTreeCtrl* tree_ctrl, wxXmlNode* root_xml_node);

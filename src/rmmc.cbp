@@ -112,6 +112,7 @@
 		<Unit filename="rmmcMain.h" />
 		<Unit filename="src/radialmenuconfig.cpp" />
 		<Unit filename="src/treectrlwithchecks.cpp" />
+		<Unit filename="version.h" />
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
@@ -136,6 +137,12 @@
 					<wxFrame wxs="wxsmith/rmmcframe.wxs" src="rmmcMain.cpp" hdr="rmmcMain.h" fwddecl="0" i18n="1" name="rmmcFrame" language="CPP" />
 				</resources>
 			</wxsmith>
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="1" date_declarations="1" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
