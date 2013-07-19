@@ -16,7 +16,7 @@ public:
     virtual ~TreeCtrlWithChecks(){};
 
     virtual void DoSetItemState(const wxTreeItemId& item, int state);
-    void (*OnStateChange)(TreeCtrlWithChecks* tree_ctrl, const wxTreeItemId& item_id) = nullptr;
+    void (*OnStateChange)(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id) = nullptr;
 
     void OnLeftClick(wxMouseEvent &event);
     //void OnBeginDrag(wxTreeEvent& event);

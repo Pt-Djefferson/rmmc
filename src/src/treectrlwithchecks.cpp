@@ -11,7 +11,10 @@ void TreeCtrlWithChecks::OnLeftClick(wxMouseEvent &event) {
    wxTreeItemId item_id = HitTest(event.GetPosition(), flags);
    if (item_id.IsOk() && flags & wxTREE_HITTEST_ONITEMSTATEICON/*wxTREE_HITTEST_ONITEMICON*/)
       {
-        this->SetItemState(item_id, wxTREE_ITEMSTATE_NEXT);
+          int item_state = this->GetItemState(item_id);
+        if (item_state == 0 || item_state == 1) {
+            this->SetItemState(item_id, !item_state);
+        }
         //if (OnStateChange != nullptr) OnStateChange(this, item_id);
         event.Skip(false);  // stop the event, so no selection
       }
@@ -23,6 +26,7 @@ void TreeCtrlWithChecks::DoSetItemState(const wxTreeItemId& item, int state) {
     if (OnStateChange != nullptr) OnStateChange(this, item);
     wxTreeCtrl::DoSetItemState(item, state);
 }
+
 /*
 void TreeCtrlWithChecks::OnBeginDrag(wxTreeEvent& event) {
     event.Allow();

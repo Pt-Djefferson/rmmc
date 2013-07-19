@@ -48,18 +48,11 @@ wxString wxbuildinfo(wxbuildinfoformat format) {
 	return wxbuild;
 }
 
-void TreeItemStateChange(TreeCtrlWithChecks* tree_ctrl, const wxTreeItemId& item_id) {
-    djfTreeItemData *item_data = (djfTreeItemData *)tree_ctrl->GetItemData(item_id);
-    if (item_data) {
-        //item_data->StateChanged();
-        //tree_ctrl->SetItemTextColour(item_id, item_data->GetItemColour());
-    }
-}
-
 //(*IdInit(rmmcFrame)
 const long rmmcFrame::ID_BITMAPBUTTON4 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON2 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON5 = wxNewId();
+const long rmmcFrame::ID_COLOURPICKERCTRL1 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON1 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON3 = wxNewId();
 const long rmmcFrame::ID_TREECTRL1 = wxNewId();
@@ -97,7 +90,7 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	wxBoxSizer* BoxSizer3;
 	wxMenu* Menu2;
 
-	Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Radial Menu Mod Configurator"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(1040,740));
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(448,320), wxDefaultSize, wxSIMPLE_BORDER|wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
@@ -121,6 +114,8 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BitmapButton5 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON5, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON5"));
 	BitmapButton5->SetDefault();
 	BoxSizer6->Add(BitmapButton5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
+	ColourPickerCtrl1 = new wxColourPickerCtrl(Panel1, ID_COLOURPICKERCTRL1, wxColour(0,0,0), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL1"));
+	BoxSizer6->Add(ColourPickerCtrl1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer5->Add(BoxSizer6, 1, wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
 	BitmapButton1 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON1, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON1"));
@@ -131,7 +126,7 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BoxSizer8->Add(BitmapButton3, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
 	BoxSizer5->Add(BoxSizer8, 0, wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer2->Add(BoxSizer5, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
+	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
 	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
 	FlexGridSizer2->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
@@ -230,66 +225,216 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	"___...........__",
 	"________________"
 	};
-	ItemStatesImageList = new wxImageList(16, 16, 3);
+	static const char *ItemStatesImageList_2_XPM[] = {
+	"16 16 157 2",
+	"E_ c #009AFE",
+	"d. c #001547",
+	"z_ c #013171",
+	"B. c #005398",
+	";_ c #055492",
+	"l. c #0097FE",
+	")_ c #032569",
+	"/_ c #0091F2",
+	"2_ c #03C4F9",
+	"~_ c #40D5EE",
+	"5. c #1388E4",
+	"N_ c #19557C",
+	"D_ c #008BED",
+	"j. c #011640",
+	"h_ c #2175C8",
+	"x_ c #01040B",
+	"+_ c #010103",
+	"@_ c #010104",
+	"K. c #01040F",
+	"F. c #010105",
+	"J. c #01071C",
+	"2. c #0088FE",
+	"#_ c #053F85",
+	"=. c #2A8ABD",
+	"i_ c #04173D",
+	"v. c #00ABFE",
+	"'_ c #0082F9",
+	"8_ c #00D1FE",
+	"p. c #0082FE",
+	"8. c #00A8FE",
+	"W_ c #0499F6",
+	"}_ c #2D8293",
+	"U_ c #002F75",
+	"a. c #007CF6",
+	"w_ c #1C65CC",
+	"D. c #0067B2",
+	"X_ c #020B1A",
+	"y. c #007CFE",
+	"x. c #00A2FE",
+	"T_ c #015DE8",
+	"$_ c #01A9E8",
+	"]_ c #009FFE",
+	"N. c #00297B",
+	"R_ c #0076FE",
+	"k. c #0090D4",
+	"9. c #006AD8",
+	"#. c #185384",
+	"k_ c #2D8EE2",
+	"q. c #013678",
+	"(_ c #001A54",
+	"[_ c #1089EB",
+	"{_ c #0D2034",
+	".. c #000E37",
+	"L_ c #41C4F2",
+	"4. c #098EFD",
+	"3_ c #047BCA",
+	"r_ c #1C82DD",
+	"1. c #0096FE",
+	"!_ c #03090A",
+	";. c #0061D3",
+	"H_ c #0D6ABC",
+	"O. c #0093FE",
+	"S_ c #030C1F",
+	"n_ c #0F5BA1",
+	"y_ c #0087D7",
+	"6_ c #030F29",
+	"*. c #10212C",
+	",. c #0090FD",
+	"@. c #0C8FF7",
+	"+. c #0090FE",
+	"p_ c #025BE4",
+	"h. c #01183E",
+	"d_ c #1B5AA7",
+	"u_ c #011B4A",
+	"6. c #0C8FFE",
+	"<. c #008DFE",
+	"B_ c #2F9FE0",
+	"G_ c #00B3FE",
+	"._ c #010307",
+	"w. c #00B0FB",
+	"5_ c #010613",
+	"f. c #01030A",
+	"J_ c #010001",
+	"o_ c #010002",
+	"s_ c #0A89E6",
+	"Z. c #01061D",
+	"3. c #0087FE",
+	"H. c #003778",
+	"t_ c #0F87DC",
+	"<_ c #03AEEE",
+	"u. c #0081FE",
+	"V_ c #37A4ED",
+	"-_ c #02132E",
+	"o. c #0078EB",
+	"_. c #0075E2",
+	"m. c #001F49",
+	"r. c #009EED",
+	"l_ c #16A8F2",
+	"X. c #02102F",
+	"Y_ c #020A1C",
+	"4_ c #020D29",
+	"|_ c #2AB8FE",
+	"j_ c #2779D1",
+	"z. c #0078FE",
+	"S. c #0092D6",
+	"Z_ c #001C50",
+	"0_ c #0F78DC",
+	"f_ c #103860",
+	">_ c #0283C8",
+	":_ c #07529A",
+	"^_ c #30C3FD",
+	"P_ c #26BBFE",
+	"F_ c #00BBFE",
+	"n. c #001F7C",
+	"M. c #0092F9",
+	"7_ c #008FF5",
+	"e. c #008CEC",
+	"b_ c #00B8FD",
+	"g. c #024597",
+	"t. c #00B8FE",
+	"*_ c #04275B",
+	"__ c None",
+	",_ c #00D8FE",
+	"v_ c #0193E6",
+	"O_ c #010206",
+	"c_ c #0662B9",
+	"q_ c #1B5FCB",
+	"G. c #010514",
+	"A_ c #01020A",
+	"0. c #01020C",
+	":. c #010516",
+	"i. c #0086FE",
+	"V. c #00D2F9",
+	"`_ c #023FAE",
+	"&_ c #033D73",
+	"K_ c #206E87",
+	"c. c #00CFFE",
+	"1_ c #079BE6",
+	"&. c #070D11",
+	"M_ c #02060A",
+	"C_ c #0F7AD2",
+	"b. c #007AF9",
+	"I_ c #00A0F6",
+	"m_ c #020305",
+	"$. c #0F2130",
+	"Q_ c #0A203A",
+	"=_ c #036FB9",
+	">. c #033170",
+	"a_ c #00C6FE",
+	"s. c #0068CB",
+	"7. c #0187FE",
+	"9_ c #00C3F9",
+	"C. c #0068D0",
+	"g_ c #15477C",
+	"A. c #001235",
+	"e_ c #1F67D0",
+	"-. c #0798FE",
+	"________._X_o___O_______________",
+	"____+_@_#_$_&_*_=_-_____________",
+	"__O_;_:_>_,_<_1_2_3_4_5_o_______",
+	"__6_7_8_9_0_q_w_e_r_t_y_u_______",
+	"__i_p_a_s_d_f_g_h_j_k_l_z_______",
+	"x_c_v_b_n_m_____M_N_B_V_C_Z_A___",
+	"S_D_F_G_H_J_______J_K_L_P_I_U_J_",
+	"Y_T_R_E_W_Q_________!_~_^_/_(___",
+	"O_)_`_'_]_[_{_________}_|__...__",
+	"____X.o.O.+.@.#.$.&.*.=.-.O.;.:.",
+	"____>.,.<.1.2.3.4.5.6.7.3.8.9.0.",
+	"____q.w.e.r.t.2.y.u.i.p.a.s.d.__",
+	"____f.g.h.j.k.l.z.x.c.v.b.n.____",
+	"______J_____m.G_M.N.B.V.C.Z.____",
+	"____________A.S.D.F.G.H.J.______",
+	"____________o_K.0.____J_________"
+	};
+	static const char *ItemStatesImageList_3_XPM[] = {
+	"16 16 1 1",
+	"_ c None",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________",
+	"________________"
+	};
+	ItemStatesImageList = new wxImageList(16, 16, 5);
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_0_XPM));
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_1_XPM));
-	static const char *ToolBarImageList_0_XPM[] = {
-	"16 16 30 1",
-	"w c Black",
-	"= c #97C4E7",
-	"; c #72A8D2",
-	"> c #FFFFFF",
-	"0 c #839CB5",
-	"o c #6B98B8",
-	"X c #5A89A6",
-	"# c #3A749C",
-	"< c #D1E5F5",
-	"q c #85A7BC",
-	"$ c #C3DDF1",
-	"9 c #749BB4",
-	": c #5F9BC8",
-	"+ c #538DB3",
-	"- c #85BBE2",
-	"4 c #EFF6FC",
-	"O c #6591AE",
-	"6 c #F7FBFD",
-	"8 c #FAFCFE",
-	"1 c #DAEAF7",
-	"5 c #E9F3FA",
-	"_ c None",
-	"7 c #FDFDFE",
-	"2 c #E2EFF8",
-	". c #8EA9BC",
-	"& c #B6D5EE",
-	"* c #A5CCEA",
-	", c #ACE95B",
-	"3 c #F4F9FD",
-	"@ c #4581AA",
-	"___.XoOO+@#.____",
-	"___.$$&*=-O;:___",
-	"__@@@@$&*=O>=o__",
-	"__@,,@$$&*O>>=o_",
-	"@@@,,@@@$&OOoO+_",
-	"@,,,,,,@<$&*=-+_",
-	"@,,,,,,@1<$&*=+_",
-	"@@@,,@@@21<$&*O_",
-	"__@,,@34521<$&O_",
-	"__@@@@634521<$o_",
-	"___.>78634521<9_",
-	"___.>>786345219_",
-	"___.>>>78634520_",
-	"___.>>>>786345q_",
-	"___............_",
-	"wwwwwwwwwwwwwwww"
-	};
-	ToolBarImageList = new wxImageList(16, 16, 2);
-	ToolBarImageList->Add(wxBitmap(ToolBarImageList_0_XPM));
+	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_2_XPM));
+	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_3_XPM));
+	ToolBarImageList = new wxImageList(16, 16, 1);
 
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
+	Connect(ID_COLOURPICKERCTRL1,wxEVT_COMMAND_COLOURPICKER_CHANGED,(wxObjectEventFunction)&rmmcFrame::OnColourPickerCtrl1ColourChanged);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnQuit);
 	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnAbout);
 	//*)
 
+	this->SetTitle(this->GetTitle() + " ver.: " + AutoVersion::FULLVERSION_STRING);
 	//config = new RadialMenuConfig();
 	xml_config = new wxXmlDocument;
     CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
@@ -355,4 +500,9 @@ void rmmcFrame::OnButton2Click(wxCommandEvent& event)
 void rmmcFrame::OnButton3Click(wxCommandEvent& event)
 {
     xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
+}
+
+void rmmcFrame::OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event)
+{
+    FillTreeCtrlWithData(CommandsTreeCtrl, xml_config, event.GetColour());
 }
