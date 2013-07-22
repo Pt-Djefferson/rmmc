@@ -20,7 +20,7 @@ class djfTreeItemNodeData : public wxTreeItemData {
 public:
     djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name, wxColour colour = wxNullColour) : m_xml_node_name(xml_node_name), m_colour(colour) {
         m_node_state = GetNodeState(parent_xml_node);
-        m_inherited_state = djfItemNodeState::Unknown;
+        //m_inherited_state = djfItemNodeState::Unknown;
     };
     ~djfTreeItemNodeData() {};
     wxString GetTitle();/* {
@@ -32,11 +32,12 @@ public:
         }
     };*/
     djfItemNodeState GetState() { return m_node_state; };
+    /*
     wxColour GetColour() {
         djfItemNodeState state = m_inherited_state;
         if (state == djfItemNodeState::Unknown) state = m_node_state;
         switch (state) {
-            case djfItemNodeState::Commented:  return m_colour;//*wxYELLOW;
+            case djfItemNodeState::Commented:  return m_colour;// *wxYELLOW;
             case djfItemNodeState::Deleted:    return *wxLIGHT_GREY;
             //case djfItemNodeState::Normal:     return wxBLACK;
             case djfItemNodeState::Properties: return *wxBLUE;
@@ -44,13 +45,13 @@ public:
         }
 
     }
+    */
     /*djfItemNodeState*/ void SetState(const djfItemNodeState state) { m_node_state = state; }
     wxXmlNode* GetXmlNode() { return m_xml_node; }
 private:
     djfItemNodeState GetNodeState(const wxXmlNode* parent_xml_node) {
         m_xml_node = nullptr;
         if (m_xml_node_name == "GlobalProperties") return djfItemNodeState::Properties;
-        test = parent_xml_node->GetName().fn_str();
         wxXmlNode* child = parent_xml_node->GetChildren();
         //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {
@@ -73,10 +74,9 @@ private:
         return djfItemNodeState::Deleted;
     }
     djfItemNodeState m_node_state;
-    djfItemNodeState m_inherited_state;
+    //djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
     wxXmlNode* m_xml_node;
-    const wchar_t* test;
     wxColour m_colour;
 };
 

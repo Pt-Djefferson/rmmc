@@ -111,7 +111,7 @@
 									<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 										<object class="sizeritem">
 											<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
-												<size>655,676</size>
+												<size>584,677</size>
 											</object>
 											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
