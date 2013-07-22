@@ -8,9 +8,9 @@
 
 extern wxStringToStringHashMap Title;
 
-enum class djfItemNodeState {
+enum class djfItemNodeState : int {
+    Commented = 0,
     Normal,
-    Commented,
     Properties,
     Deleted,
     Unknown
@@ -44,14 +44,18 @@ public:
         }
 
     }
+    /*djfItemNodeState*/ void SetState(const djfItemNodeState state) { m_node_state = state; }
+    wxXmlNode* GetXmlNode() { return m_xml_node; }
 private:
     djfItemNodeState GetNodeState(const wxXmlNode* parent_xml_node) {
+        m_xml_node = nullptr;
         if (m_xml_node_name == "GlobalProperties") return djfItemNodeState::Properties;
         test = parent_xml_node->GetName().fn_str();
         wxXmlNode* child = parent_xml_node->GetChildren();
         //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {
             if (child->GetName() == m_xml_node_name) {
+                m_xml_node = child;
                 return  djfItemNodeState::Normal;
             } else if (child->GetType() == wxXML_COMMENT_NODE) {
                 //Маленький хак для подавления сообщения об ошибке
@@ -60,7 +64,8 @@ private:
                 wxStringInputStream comment_stream(content);
                 wxXmlDocument comment_doc;
                 if (comment_doc.Load(comment_stream) && (comment_doc.GetRoot()->GetName() == m_xml_node_name)) {
-                        return djfItemNodeState::Commented;
+                    m_xml_node = child;
+                    return djfItemNodeState::Commented;
                 }
             }
             child = child->GetNext();
@@ -70,6 +75,7 @@ private:
     djfItemNodeState m_node_state;
     djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
+    wxXmlNode* m_xml_node;
     const wchar_t* test;
     wxColour m_colour;
 };

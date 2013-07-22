@@ -23,8 +23,8 @@ void TreeCtrlWithChecks::OnLeftClick(wxMouseEvent &event) {
 }
 
 void TreeCtrlWithChecks::DoSetItemState(const wxTreeItemId& item, int state) {
-    if (OnStateChange != nullptr) OnStateChange(this, item);
     wxTreeCtrl::DoSetItemState(item, state);
+    if (OnStateChange != nullptr) OnStateChange(this, item);
 }
 
 /*

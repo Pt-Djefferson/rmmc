@@ -15,8 +15,11 @@ void TitlesInit() {
         Title["HotkeyOnlyCommands"] = wxString::FromUTF8Unchecked(_("Горячие клавиши"));
         Title["GlobalProperties"] = wxString::FromUTF8Unchecked(_("Глобальные настройки"));
         Title["MapMenuKey"] = wxString::FromUTF8Unchecked(_("Клавиша вызова меню карты"));
-        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки конфигурации мода"));
-        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка между обработкой горячих клавиш"));
+        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки мода"));
+        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка для горячих клавиш"));
+        Title["CommonCommands"] = wxString::FromUTF8Unchecked(_("Общие команды"));
+        Title["TeamCommands"] = wxString::FromUTF8Unchecked(_("Созюник в прицеле"));
+        Title["EnemyCommands"] = wxString::FromUTF8Unchecked(_("Противник в прицеле"));
 }
 
 wxString djfTreeItemNodeData::GetTitle() {
@@ -29,14 +32,19 @@ wxString djfTreeItemNodeData::GetTitle() {
     }
 };
 
+void UpdateTreeCtrlStatesAndColours(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour) {
+}
+
 void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour) {
     if (tree_ctrl == nullptr || xml_doc == nullptr) return;
     if (Title.empty()) TitlesInit();
 
     wxString root_node_name = "RadialMenu.xml";
     wxString root_section_name[10] = {"TankMenu", "lightTankMenu", "mediumTankMenu", "heavyTankMenu", "AT-SPGMenu", "SPGMenu", "TankSpecificCommands", "MapCommands", "HotkeyOnlyCommands", "GlobalProperties"};
-    //wxString global_property_name[3] = {"MapMenuKey", "MenuReloadHotkey", "HotkeyCommandDelay"};
+    wxString global_property_name[3] = {"MapMenuKey", "MenuReloadHotkey", "HotkeyCommandDelay"};
+    wxString command_leaf_name[3] = {"CommonCommands", "TeamCommands", "EnemyCommands"};
 
+    //TODO: такое шибанутое формирование дерева элементов можно заменить шаблоном
     wxXmlNode* doc_node = xml_doc->GetDocumentNode();
     djfTreeItemNodeData* root_node_data = new djfTreeItemNodeData(doc_node, root_node_name);
     if (root_node_data->GetState() == djfItemNodeState::Deleted || root_node_data->GetState() == djfItemNodeState::Commented) {
@@ -51,50 +59,48 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
     for (unsigned int i = 0; i < 10; ++i) {
         node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), root_section_name[i], colour);
         wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, node_data->GetTitle(), 0, 0, node_data);
-        switch (node_data->GetState()) {
-            case djfItemNodeState::Commented:  tree_ctrl->SetItemState(last_id, 0); break;
-            case djfItemNodeState::Normal:     tree_ctrl->SetItemState(last_id, 1); break;
-            case djfItemNodeState::Properties: tree_ctrl->SetItemState(last_id, 2); break;
-            case djfItemNodeState::Deleted:    tree_ctrl->SetItemState(last_id, 3); break;
-            default:    tree_ctrl->SetItemState(last_id, 3); break;
+        //Первые 6 пунктов дерева
+        if (i < 6) {
+            for (unsigned int j = 0; j < 3; ++j) {
+                djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), command_leaf_name[j], colour);
+                wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), 0, 0, child_node_data);
+                tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
+            }
         }
-
-        /*
-        current_xml_node = FindXMLNode(root_xml_node, global_section[i]);
-        djfTreeItemData* node_data = nullptr;
-        if (current_xml_node != nullptr) {
-            node_data = new djfTreeItemData(current_xml_node);
-        }
-        wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, global_section_ru[i], -1, -1, node_data);
-        FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
-        */
+        tree_ctrl->SetItemState(last_id, (int)node_data->GetState());
     }
 
-    /*
-    wxTreeItemId global_properties_id = tree_ctrl->AppendItem(root_id, global_section_ru[9], -1, -1, nullptr);
+    wxTreeItemId properties_node = tree_ctrl->GetLastChild(root_id);
     for (unsigned int i = 0; i < 3; ++i) {
-        current_xml_node = FindXMLNode(root_xml_node, global_properties[i]);
-        djfTreeItemData* node_data = nullptr;
-        if (current_xml_node != nullptr) {
-            node_data = new djfTreeItemData(current_xml_node);
-        }
-        wxTreeItemId last_id = tree_ctrl->AppendItem(global_properties_id, global_properties_ru[i], -1, -1, node_data);
-        FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
+        node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), global_property_name[i], colour);
+        wxTreeItemId last_id = tree_ctrl->AppendItem(properties_node, node_data->GetTitle(), 0, 0, node_data);
+        tree_ctrl->SetItemState(last_id, (int)node_data->GetState());
     }
-    */
-#ifdef _comment_
-#endif
+
 };
 
 void TreeItemStateChange(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id) {
     djfTreeItemNodeData *item_data = (djfTreeItemNodeData *)tree_ctrl->GetItemData(item_id);
     if (item_data) {
         //item_data->StateChanged();
-        tree_ctrl->SetItemTextColour(item_id, item_data->GetColour());
+        if (tree_ctrl->GetItemState(item_id) == 1) {
+            item_data->SetState(djfItemNodeState::Normal);
+        } else if (tree_ctrl->GetItemState(item_id) == 0) {
+            item_data->SetState(djfItemNodeState::Commented);
+        }
+        wxColour node_colour = item_data->GetColour();
+        tree_ctrl->SetItemTextColour(item_id, node_colour);
+
+        wxTreeItemIdValue cookie;
+        wxTreeItemId child_id = tree_ctrl->GetFirstChild(item_id, cookie);
+        while (child_id.IsOk()) {
+            tree_ctrl->SetItemTextColour(child_id, node_colour);
+            child_id = tree_ctrl->GetNextChild(item_id, cookie);
+        }
     }
 }
 
-
+#ifdef _comment_
 void FillTreeCtrlNodeWithXMLData(wxTreeCtrl* tree_ctrl, wxTreeItemId* parent_id, wxXmlNode* parent_xml_node, const bool skip_parent) {
     if (tree_ctrl== nullptr || parent_xml_node == nullptr) return;
     wxTreeItemId last_id;
@@ -180,3 +186,4 @@ void ParseXMLDataToTreeCtrl(wxTreeCtrl* tree_ctrl, wxXmlNode* root_xml_node) {
         FillTreeCtrlNodeWithXMLData(tree_ctrl, &last_id, current_xml_node, true);
     }
 }
+#endif
