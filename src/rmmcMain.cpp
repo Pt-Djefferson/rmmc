@@ -52,10 +52,10 @@ wxString wxbuildinfo(wxbuildinfoformat format) {
 const long rmmcFrame::ID_BITMAPBUTTON4 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON2 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON5 = wxNewId();
-const long rmmcFrame::ID_COLOURPICKERCTRL1 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON1 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON3 = wxNewId();
 const long rmmcFrame::ID_TREECTRL1 = wxNewId();
+const long rmmcFrame::ID_PANEL2 = wxNewId();
 const long rmmcFrame::ID_PANEL1 = wxNewId();
 const long rmmcFrame::ID_MENUITEM1 = wxNewId();
 const long rmmcFrame::idMenuAbout = wxNewId();
@@ -114,8 +114,6 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BitmapButton5 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON5, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON5"));
 	BitmapButton5->SetDefault();
 	BoxSizer6->Add(BitmapButton5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
-	ColourPickerCtrl1 = new wxColourPickerCtrl(Panel1, ID_COLOURPICKERCTRL1, wxColour(0,0,0), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL1"));
-	BoxSizer6->Add(ColourPickerCtrl1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer5->Add(BoxSizer6, 1, wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
 	BitmapButton1 = new wxBitmapButton(Panel1, ID_BITMAPBUTTON1, wxBitmap(wxImage(_T("C:\\wx294\\art\\deffile.xpm"))), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON1"));
@@ -130,7 +128,8 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
 	FlexGridSizer2->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	BoxSizer3->Add(553,394,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	Panel2 = new wxPanel(Panel1, ID_PANEL2, wxDefaultPosition, wxSize(584,677), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+	BoxSizer3->Add(Panel2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer2->Add(BoxSizer3, 1, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer1->Add(FlexGridSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
@@ -429,7 +428,6 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ToolBarImageList = new wxImageList(16, 16, 1);
 
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
-	Connect(ID_COLOURPICKERCTRL1,wxEVT_COMMAND_COLOURPICKER_CHANGED,(wxObjectEventFunction)&rmmcFrame::OnColourPickerCtrl1ColourChanged);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnQuit);
 	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnAbout);
 	//*)
@@ -499,10 +497,5 @@ void rmmcFrame::OnButton2Click(wxCommandEvent& event)
 
 void rmmcFrame::OnButton3Click(wxCommandEvent& event)
 {
-    xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
-}
-
-void rmmcFrame::OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event)
-{
-    FillTreeCtrlWithData(CommandsTreeCtrl, xml_config, event.GetColour());
+    //xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
 }

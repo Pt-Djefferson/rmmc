@@ -54,6 +54,7 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
     }
     tree_ctrl->DeleteAllItems();
     wxTreeItemId root_id = tree_ctrl->AddRoot(root_node_data->GetTitle(), 0, 0, root_node_data);
+    tree_ctrl->SetItemState(root_id, (int)root_node_data->GetState());
 
     djfTreeItemNodeData* node_data;
     for (unsigned int i = 0; i < 10; ++i) {

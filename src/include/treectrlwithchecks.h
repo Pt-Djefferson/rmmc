@@ -2,6 +2,16 @@
 #define TREECTRLWITHCHECKS_H
 
 #include <wx/treectrl.h>
+#include <wx/colour.h>
+
+enum class ItemState : int {
+    NoState = -1,
+    Commented = 0,
+    Normal,
+    Properties,
+    Deleted,
+    Unknown
+};
 
 class TreeCtrlWithChecks : public wxTreeCtrl
 {
@@ -16,10 +26,27 @@ public:
     virtual ~TreeCtrlWithChecks(){};
 
     virtual void DoSetItemState(const wxTreeItemId& item, int state);
+
+    virtual void SetItemStrike(const wxTreeItemId& item, bool strike = true) {
+        /*
+        if(!item.IsOk() || item == this->GetRootItem()) return;
+
+        wxFont item_font = this->GetItemFont(item);
+        if (item_font == wxNullFont) {
+            item_font = wxNullFont;
+        }
+        item_font.SetStrikethrough(strike);
+        this->SetItemFont(item, item_font);
+        */
+    }
+
+
     void (*OnStateChange)(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id) = nullptr;
 
     void OnLeftClick(wxMouseEvent &event);
     //void OnBeginDrag(wxTreeEvent& event);
+    //wxColour m_state_colour[5] = { wxTheColourDatabase->Find("GREY"), wxNullColour, *wxBLUE, *wxLIGHT_GREY, *wxRED };
+    wxColour m_state_colour[5] = { wxTheColourDatabase->Find("CADET BLUE"), wxTheColourDatabase->Find("BLUE"), wxTheColourDatabase->Find("BROWN"), wxTheColourDatabase->Find("LIGHT GREY"), *wxRED };
 
     wxDECLARE_NO_COPY_CLASS(TreeCtrlWithChecks);
     DECLARE_EVENT_TABLE()

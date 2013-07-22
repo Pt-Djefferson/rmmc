@@ -19,7 +19,6 @@
 #include <wx/bmpbuttn.h>
 #include <wx/imaglist.h>
 #include <wx/frame.h>
-#include <wx/clrpicker.h>
 #include <wx/statusbr.h>
 //*)
 #include "radialmenuconfig.h"
@@ -45,17 +44,16 @@ private:
 	void OnCommandsTreeCtrlBeginDrag(wxTreeEvent &event);
 	void OnButton2Click(wxCommandEvent& event);
 	void OnButton3Click(wxCommandEvent& event);
-	void OnColourPickerCtrl1ColourChanged(wxColourPickerEvent& event);
 	//*)
 
 	//(*Identifiers(rmmcFrame)
 	static const long ID_BITMAPBUTTON4;
 	static const long ID_BITMAPBUTTON2;
 	static const long ID_BITMAPBUTTON5;
-	static const long ID_COLOURPICKERCTRL1;
 	static const long ID_BITMAPBUTTON1;
 	static const long ID_BITMAPBUTTON3;
 	static const long ID_TREECTRL1;
+	static const long ID_PANEL2;
 	static const long ID_PANEL1;
 	static const long ID_MENUITEM1;
 	static const long idMenuAbout;
@@ -73,13 +71,13 @@ private:
 	TreeCtrlWithChecks* CommandsTreeCtrl;
 	wxPanel* Panel1;
 	wxBitmapButton* BitmapButton2;
-	wxColourPickerCtrl* ColourPickerCtrl1;
 	wxBitmapButton* BitmapButton1;
 	wxImageList* ToolBarImageList;
 	wxStatusBar* StatusBar1;
 	wxImageList* ItemStatesImageList;
 	wxBitmapButton* BitmapButton4;
 	wxBitmapButton* BitmapButton3;
+	wxPanel* Panel2;
 	wxToolBar* ToolBar;
 	//*)
 
