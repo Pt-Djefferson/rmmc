@@ -13,11 +13,15 @@
 //(*Headers(rmmcFrame)
 #include <wx/treectrl.h>
 #include <wx/sizer.h>
+#include <wx/stattext.h>
 #include <wx/menu.h>
+#include <wx/textctrl.h>
 #include <wx/toolbar.h>
 #include <wx/panel.h>
 #include <wx/bmpbuttn.h>
 #include <wx/imaglist.h>
+#include <wx/button.h>
+#include <wx/dirdlg.h>
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 //*)
@@ -25,6 +29,8 @@
 #include "treectrlwithchecks.h"
 #include <wx/artprov.h>
 #include "version.h"
+#include <wx/dir.h>
+
 //#include <wx/event.h>
 
 
@@ -34,7 +40,7 @@ public:
 	rmmcFrame(wxWindow *parent,wxWindowID id = -1);
 	virtual ~rmmcFrame();
 	//RadialMenuConfig *config;
-	wxXmlDocument* xml_config;
+	wxXmlDocument *xml_config;
 
 private:
 
@@ -42,8 +48,10 @@ private:
 	void OnQuit(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
 	void OnCommandsTreeCtrlBeginDrag(wxTreeEvent &event);
-	void OnButton2Click(wxCommandEvent& event);
-	void OnButton3Click(wxCommandEvent& event);
+	void OnButton2Click(wxCommandEvent &event);
+	void OnButton3Click(wxCommandEvent &event);
+	void OnButton1Click(wxCommandEvent &event);
+	void OnButton2Click1(wxCommandEvent& event);
 	//*)
 
 	//(*Identifiers(rmmcFrame)
@@ -53,7 +61,11 @@ private:
 	static const long ID_BITMAPBUTTON1;
 	static const long ID_BITMAPBUTTON3;
 	static const long ID_TREECTRL1;
-	static const long ID_PANEL2;
+	static const long ID_STATICTEXT1;
+	static const long ID_TEXTCTRL1;
+	static const long ID_BUTTON1;
+	static const long ID_TEXTCTRL2;
+	static const long ID_BUTTON2;
 	static const long ID_PANEL1;
 	static const long ID_MENUITEM1;
 	static const long idMenuAbout;
@@ -68,16 +80,21 @@ private:
 
 	//(*Declarations(rmmcFrame)
 	wxBitmapButton* BitmapButton5;
+	wxButton* Button1;
 	TreeCtrlWithChecks* CommandsTreeCtrl;
 	wxPanel* Panel1;
 	wxBitmapButton* BitmapButton2;
+	wxStaticText* StaticText1;
 	wxBitmapButton* BitmapButton1;
+	wxButton* Button2;
 	wxImageList* ToolBarImageList;
 	wxStatusBar* StatusBar1;
+	wxDirDialog* DirDialog1;
 	wxImageList* ItemStatesImageList;
+	wxTextCtrl* TextCtrl2;
 	wxBitmapButton* BitmapButton4;
+	wxTextCtrl* TextCtrl1;
 	wxBitmapButton* BitmapButton3;
-	wxPanel* Panel2;
 	wxToolBar* ToolBar;
 	//*)
 

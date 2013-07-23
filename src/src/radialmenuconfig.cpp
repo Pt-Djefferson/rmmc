@@ -1,25 +1,25 @@
-﻿#include "radialmenuconfig.h"
+#include "radialmenuconfig.h"
 
 wxStringToStringHashMap Title;
 
 void TitlesInit() {
-        Title["RadialMenu.xml"] = wxString::FromUTF8Unchecked(_("Конфигурация"));
-        Title["TankMenu"] = wxString::FromUTF8Unchecked(_("Основные команды"));
-        Title["lightTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для легких танков"));
-        Title["mediumTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для средних танков"));
-        Title["heavyTankMenu"] = wxString::FromUTF8Unchecked(_("Команды для тяжелых танков"));
-        Title["AT-SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для ПТ-САУ"));
-        Title["SPGMenu"] = wxString::FromUTF8Unchecked(_("Команды для САУ"));
-        Title["TankSpecificCommands"] = wxString::FromUTF8Unchecked(_("Команды для определенного танка"));
-        Title["MapCommands"] = wxString::FromUTF8Unchecked(_("Команды для карт"));
-        Title["HotkeyOnlyCommands"] = wxString::FromUTF8Unchecked(_("Горячие клавиши"));
-        Title["GlobalProperties"] = wxString::FromUTF8Unchecked(_("Глобальные настройки"));
-        Title["MapMenuKey"] = wxString::FromUTF8Unchecked(_("Клавиша вызова меню карты"));
-        Title["MenuReloadHotkey"] = wxString::FromUTF8Unchecked(_("Клавиша перезагрузки мода"));
-        Title["HotkeyCommandDelay"] = wxString::FromUTF8Unchecked(_("Задержка для горячих клавиш"));
-        Title["CommonCommands"] = wxString::FromUTF8Unchecked(_("Общие команды"));
-        Title["TeamCommands"] = wxString::FromUTF8Unchecked(_("Созюник в прицеле"));
-        Title["EnemyCommands"] = wxString::FromUTF8Unchecked(_("Противник в прицеле"));
+        Title["RadialMenu.xml"] = _("Конфигурация");
+        Title["TankMenu"] = _("Основные команды");
+        Title["lightTankMenu"] = _("Команды для легких танков");
+        Title["mediumTankMenu"] = _("Команды для средних танков");
+        Title["heavyTankMenu"] = _("Команды для тяжелых танков");
+        Title["AT-SPGMenu"] = _("Команды для ПТ-САУ");
+        Title["SPGMenu"] = _("Команды для САУ");
+        Title["TankSpecificCommands"] = _("Команды для определенного танка");
+        Title["MapCommands"] = _("Команды для карт");
+        Title["HotkeyOnlyCommands"] = _("Горячие клавиши");
+        Title["GlobalProperties"] = _("Глобальные настройки");
+        Title["MapMenuKey"] = _("Клавиша вызова меню карты");
+        Title["MenuReloadHotkey"] = _("Клавиша перезагрузки мода");
+        Title["HotkeyCommandDelay"] = _("Задержка для горячих клавиш");
+        Title["CommonCommands"] = _("Общие команды");
+        Title["TeamCommands"] = _("Созюник в прицеле");
+        Title["EnemyCommands"] = _("Противник в прицеле");
 }
 
 wxString djfTreeItemNodeData::GetTitle() {
@@ -47,7 +47,7 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
     //TODO: такое шибанутое формирование дерева элементов можно заменить шаблоном
     wxXmlNode* doc_node = xml_doc->GetDocumentNode();
     djfTreeItemNodeData* root_node_data = new djfTreeItemNodeData(doc_node, root_node_name);
-    if (root_node_data->GetState() == djfItemNodeState::Deleted || root_node_data->GetState() == djfItemNodeState::Commented) {
+    if (root_node_data->GetState() == ItemState::Deleted || root_node_data->GetState() == ItemState::Commented) {
         delete root_node_data;
         wxMessageBox(wxString::FromUTF8Unchecked(_("Ошибка анализа содержимого файла")), _("Welcome to..."));
         return;
@@ -81,13 +81,14 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
 };
 
 void TreeItemStateChange(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id) {
+    /*
     djfTreeItemNodeData *item_data = (djfTreeItemNodeData *)tree_ctrl->GetItemData(item_id);
     if (item_data) {
         //item_data->StateChanged();
         if (tree_ctrl->GetItemState(item_id) == 1) {
-            item_data->SetState(djfItemNodeState::Normal);
+            item_data->SetState(ItemState::Normal);
         } else if (tree_ctrl->GetItemState(item_id) == 0) {
-            item_data->SetState(djfItemNodeState::Commented);
+            item_data->SetState(ItemState::Commented);
         }
         wxColour node_colour = item_data->GetColour();
         tree_ctrl->SetItemTextColour(item_id, node_colour);
@@ -99,6 +100,7 @@ void TreeItemStateChange(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id) {
             child_id = tree_ctrl->GetNextChild(item_id, cookie);
         }
     }
+    */
 }
 
 #ifdef _comment_

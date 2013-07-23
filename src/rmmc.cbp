@@ -3,7 +3,6 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="RMMC" />
-		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
@@ -102,6 +101,7 @@
 			<Add library="libodbc32.a" />
 		</Linker>
 		<Unit filename="include/radialmenuconfig.h" />
+		<Unit filename="include/tankslist.h" />
 		<Unit filename="include/treectrlwithchecks.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
@@ -111,6 +111,7 @@
 		<Unit filename="rmmcMain.cpp" />
 		<Unit filename="rmmcMain.h" />
 		<Unit filename="src/radialmenuconfig.cpp" />
+		<Unit filename="src/tankslist.cpp" />
 		<Unit filename="src/treectrlwithchecks.cpp" />
 		<Unit filename="version.h" />
 		<Unit filename="wx_pch.h">

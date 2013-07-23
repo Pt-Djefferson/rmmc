@@ -225,3 +225,7 @@ wx_pch.h.gch/
 #############
 
 Debug/
+*.pkg
+*.mo
+src/resources/ingame/res/scripts/item_defs/vehicles/*/*.xml
+src/resources/ingame/res/scripts/item_defs/vehicles/*/*/*.xml

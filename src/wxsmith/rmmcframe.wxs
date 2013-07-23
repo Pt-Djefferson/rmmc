@@ -10,122 +10,176 @@
 			<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 				<orient>wxVERTICAL</orient>
 				<object class="sizeritem">
-					<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
-						<rows>2</rows>
-						<growablecols>0</growablecols>
-						<growablerows>0,1</growablerows>
+					<object class="wxBoxSizer" variable="BoxSizer9" member="no">
 						<object class="sizeritem">
-							<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
-								<cols>2</cols>
-								<rows>1</rows>
-								<growablecols>0,1</growablecols>
-								<growablerows>0</growablerows>
+							<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+								<orient>wxVERTICAL</orient>
 								<object class="sizeritem">
-									<object class="wxBoxSizer" variable="BoxSizer2" member="no">
-										<orient>wxVERTICAL</orient>
+									<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 										<object class="sizeritem">
-											<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+											<object class="wxBoxSizer" variable="BoxSizer6" member="no">
 												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer6" member="no">
-														<object class="sizeritem">
-															<object class="wxBitmapButton" name="ID_BITMAPBUTTON4" variable="BitmapButton4" member="yes">
-																<bitmap stock_id="wxART_NEW" />
-																<default>1</default>
-																<size>24,24</size>
-																<handler function="OnButton2Click" entry="EVT_BUTTON" />
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButton2" member="yes">
-																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
-																<default>1</default>
-																<size>24,24</size>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxBitmapButton" name="ID_BITMAPBUTTON5" variable="BitmapButton5" member="yes">
-																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
-																<default>1</default>
-																<size>24,24</size>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
+													<object class="wxBitmapButton" name="ID_BITMAPBUTTON4" variable="BitmapButton4" member="yes">
+														<bitmap stock_id="wxART_NEW" />
+														<default>1</default>
+														<size>24,24</size>
+														<handler function="OnButton2Click" entry="EVT_BUTTON" />
 													</object>
-													<flag>wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-													<option>1</option>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>1</border>
 												</object>
 												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer8" member="no">
-														<object class="sizeritem">
-															<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButton1" member="yes">
-																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
-																<size>24,24</size>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxBitmapButton" name="ID_BITMAPBUTTON3" variable="BitmapButton3" member="yes">
-																<bitmap>C:\wx294\art\deffile.xpm</bitmap>
-																<default>1</default>
-																<size>24,24</size>
-																<focused>1</focused>
-															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
+													<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButton2" member="yes">
+														<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+														<default>1</default>
+														<size>24,24</size>
 													</object>
-													<flag>wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>1</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBitmapButton" name="ID_BITMAPBUTTON5" variable="BitmapButton5" member="yes">
+														<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+														<default>1</default>
+														<size>24,24</size>
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>1</border>
 												</object>
 											</object>
-											<flag>wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										</object>
-										<object class="sizeritem">
-											<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
-												<image_list>&lt;none&gt;</image_list>
-												<tree_items>
-													<item>CommandsTreeCtrl</item>
-													<item>&lt;none&gt;</item>
-												</tree_items>
-												<items_text>
-													<item2>CommandsTreeCtrl</item2>
-													<item2>&lt;none&gt;</item2>
-												</items_text>
-												<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
-											</object>
-											<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>1</border>
+											<flag>wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<option>1</option>
 										</object>
+										<object class="sizeritem">
+											<object class="wxBoxSizer" variable="BoxSizer8" member="no">
+												<object class="sizeritem">
+													<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButton1" member="yes">
+														<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+														<size>24,24</size>
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>1</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBitmapButton" name="ID_BITMAPBUTTON3" variable="BitmapButton3" member="yes">
+														<bitmap>C:\wx294\art\deffile.xpm</bitmap>
+														<default>1</default>
+														<size>24,24</size>
+														<focused>1</focused>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<border>1</border>
+												</object>
+											</object>
+											<flag>wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										</object>
 									</object>
-									<flag>wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-									<border>5</border>
-									<option>1</option>
+									<flag>wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								</object>
 								<object class="sizeritem">
-									<object class="wxBoxSizer" variable="BoxSizer3" member="no">
-										<object class="sizeritem">
-											<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
-												<size>584,677</size>
-											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
+									<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
+										<image_list>&lt;none&gt;</image_list>
+										<tree_items>
+											<item>CommandsTreeCtrl</item>
+											<item>&lt;none&gt;</item>
+										</tree_items>
+										<items_text>
+											<item2>CommandsTreeCtrl</item2>
+											<item2>&lt;none&gt;</item2>
+										</items_text>
+										<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
 									</object>
-									<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-									<border>5</border>
+									<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>1</border>
 									<option>1</option>
 								</object>
 							</object>
 							<flag>wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
 							<option>1</option>
 						</object>
+						<object class="sizeritem">
+							<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+								<object class="sizeritem">
+									<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<object class="wxBoxSizer" variable="BoxSizer12" member="no">
+												<object class="sizeritem">
+													<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+														<label>Папка с WoT:</label>
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+														<value>.\\resources\\ingame</value>
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<option>1</option>
+												</object>
+												<object class="sizeritem">
+													<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+														<label>...</label>
+														<handler function="OnButton1Click" entry="EVT_BUTTON" />
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+												</object>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+											<border>5</border>
+										</object>
+										<object class="sizeritem">
+											<object class="wxBoxSizer" variable="BoxSizer13" member="no">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
+														<value>Text</value>
+														<style>wxTE_MULTILINE</style>
+													</object>
+													<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<option>7</option>
+												</object>
+												<object class="sizeritem">
+													<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
+														<label>Label</label>
+														<handler function="OnButton2Click1" entry="EVT_BUTTON" />
+													</object>
+													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<option>1</option>
+												</object>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+										</object>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxBoxSizer" variable="BoxSizer11" member="no" />
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>3</option>
+						</object>
+					</object>
+					<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+					<border>5</border>
+					<option>2</option>
+				</object>
+				<object class="sizeritem">
+					<object class="wxBoxSizer" variable="BoxSizer10" member="no">
 						<object class="sizeritem">
 							<object class="wxBoxSizer" variable="BoxSizer4" member="no">
 								<object class="spacer">
@@ -139,7 +193,7 @@
 							<option>1</option>
 						</object>
 					</object>
-					<flag>wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+					<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 					<border>5</border>
 					<option>1</option>
 				</object>
@@ -724,6 +778,11 @@
 		</object>
 		<object class="wxToolBar" name="ID_TOOLBAR1" variable="ToolBar" member="yes">
 			<style>wxTB_FLAT|wxTB_DOCKABLE|wxTB_TEXT</style>
+		</object>
+		<object class="wxDirDialog" variable="DirDialog1" member="yes">
+			<message>Select directory</message>
+			<default_path>resources\\ingame</default_path>
+			<style>wxDD_DEFAULT_STYLE|wxDD_DIR_MUST_EXIST</style>
 		</object>
 	</object>
 </wxsmith>

@@ -24,12 +24,12 @@ void TreeCtrlWithChecks::OnLeftClick(wxMouseEvent &event) {
 
 void TreeCtrlWithChecks::DoSetItemState(const wxTreeItemId& item, int state) {
     wxTreeItemId root_id = this->GetRootItem();
-    /*
+
     bool was_deleted = false;
     if (item != root_id) {
         was_deleted = this->GetItemState(item) == (int)ItemState::Deleted;
     }
-    */
+
     //wxTreeCtrl::DoSetItemState(item, state);
 
     int parent_state = (int)ItemState::Normal;
@@ -46,13 +46,13 @@ void TreeCtrlWithChecks::DoSetItemState(const wxTreeItemId& item, int state) {
         wxTreeCtrl::DoSetItemState(item, state);
 
         this->SetItemTextColour(item, m_state_colour[state]);
-        /*
+
         if (was_deleted && state != (int)ItemState::Deleted) {
             SetItemStrike(item, false);
         } else if (!was_deleted && state == (int)ItemState::Deleted) {
             SetItemStrike(item, true);
         }
-        */
+
 
         wxTreeItemIdValue cookie;
         wxTreeItemId child_id = this->GetFirstChild(item, cookie);

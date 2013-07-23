@@ -55,7 +55,11 @@ const long rmmcFrame::ID_BITMAPBUTTON5 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON1 = wxNewId();
 const long rmmcFrame::ID_BITMAPBUTTON3 = wxNewId();
 const long rmmcFrame::ID_TREECTRL1 = wxNewId();
-const long rmmcFrame::ID_PANEL2 = wxNewId();
+const long rmmcFrame::ID_STATICTEXT1 = wxNewId();
+const long rmmcFrame::ID_TEXTCTRL1 = wxNewId();
+const long rmmcFrame::ID_BUTTON1 = wxNewId();
+const long rmmcFrame::ID_TEXTCTRL2 = wxNewId();
+const long rmmcFrame::ID_BUTTON2 = wxNewId();
 const long rmmcFrame::ID_PANEL1 = wxNewId();
 const long rmmcFrame::ID_MENUITEM1 = wxNewId();
 const long rmmcFrame::idMenuAbout = wxNewId();
@@ -78,15 +82,19 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	wxBoxSizer* BoxSizer4;
 	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer5;
+	wxBoxSizer* BoxSizer10;
+	wxBoxSizer* BoxSizer7;
 	wxBoxSizer* BoxSizer8;
 	wxMenuItem* MenuItem2;
+	wxBoxSizer* BoxSizer13;
 	wxMenuItem* MenuItem1;
-	wxFlexGridSizer* FlexGridSizer2;
 	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer11;
 	wxMenu* Menu1;
+	wxBoxSizer* BoxSizer12;
 	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer9;
 	wxMenuBar* MenuBar1;
-	wxFlexGridSizer* FlexGridSizer1;
 	wxBoxSizer* BoxSizer3;
 	wxMenu* Menu2;
 
@@ -94,14 +102,7 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	SetClientSize(wxSize(1040,740));
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(448,320), wxDefaultSize, wxSIMPLE_BORDER|wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
-	FlexGridSizer1 = new wxFlexGridSizer(2, 0, 0, 0);
-	FlexGridSizer1->AddGrowableCol(0);
-	FlexGridSizer1->AddGrowableRow(0);
-	FlexGridSizer1->AddGrowableRow(1);
-	FlexGridSizer2 = new wxFlexGridSizer(1, 2, 0, 0);
-	FlexGridSizer2->AddGrowableCol(0);
-	FlexGridSizer2->AddGrowableCol(1);
-	FlexGridSizer2->AddGrowableRow(0);
+	BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer2 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
@@ -126,16 +127,33 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BoxSizer2->Add(BoxSizer5, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
 	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
-	FlexGridSizer2->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer9->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	Panel2 = new wxPanel(Panel1, ID_PANEL2, wxDefaultPosition, wxSize(584,677), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
-	BoxSizer3->Add(Panel2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer2->Add(BoxSizer3, 1, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(FlexGridSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer7 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer12 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("Папка с WoT:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
+	BoxSizer12->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	TextCtrl1 = new wxTextCtrl(Panel1, ID_TEXTCTRL1, _(".\\resources\\ingame"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	BoxSizer12->Add(TextCtrl1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	Button1 = new wxButton(Panel1, ID_BUTTON1, _("..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	BoxSizer12->Add(Button1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer7->Add(BoxSizer12, 0, wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+	BoxSizer13 = new wxBoxSizer(wxVERTICAL);
+	TextCtrl2 = new wxTextCtrl(Panel1, ID_TEXTCTRL2, _("Text"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+	BoxSizer13->Add(TextCtrl2, 7, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	Button2 = new wxButton(Panel1, ID_BUTTON2, _("Label"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	BoxSizer13->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer7->Add(BoxSizer13, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3->Add(BoxSizer7, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer11 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer3->Add(BoxSizer11, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer9->Add(BoxSizer3, 3, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer9, 2, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer4->Add(-1,-1,1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	BoxSizer1->Add(FlexGridSizer1, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer10->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer10, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	Panel1->SetSizer(BoxSizer1);
 	BoxSizer1->Fit(Panel1);
 	BoxSizer1->SetSizeHints(Panel1);
@@ -426,8 +444,11 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_2_XPM));
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_3_XPM));
 	ToolBarImageList = new wxImageList(16, 16, 1);
+	DirDialog1 = new wxDirDialog(this, _("Select directory"), _("resources\\ingame"), wxDD_DEFAULT_STYLE|wxDD_DIR_MUST_EXIST, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
 
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
+	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton1Click);
+	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click1);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnQuit);
 	Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnAbout);
 	//*)
@@ -435,24 +456,24 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	this->SetTitle(this->GetTitle() + " ver.: " + AutoVersion::FULLVERSION_STRING);
 	//config = new RadialMenuConfig();
 	xml_config = new wxXmlDocument;
-    CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
+	CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
 	CommandsTreeCtrl->OnStateChange = &TreeItemStateChange;
 
 	Connect(ID_NEW,wxEVT_COMMAND_TOOL_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
 
 	ToolBar = CreateToolBar(/*wxBORDER_NONE|wxTB_HORIZONTAL*/wxTB_FLAT | wxTB_DOCKABLE/* | wxTB_TEXT*/, wxID_ANY);
-	ToolBar->AddTool(ID_NEW, wxString::FromUTF8Unchecked(_("Новый")), wxArtProvider::GetBitmap(wxART_NEW, wxART_BUTTON, wxSize(24,24)));
-	ToolBar->AddTool(ID_NEW_FROM_TEMPLATE, wxString::FromUTF8Unchecked(_("Из шаблона")), wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_BUTTON, wxSize(24,24)), (wxString)wxEmptyString, wxITEM_DROPDOWN);
-    wxMenu* drop_menu = new wxMenu;
-    drop_menu->Append(wxID_ANY, wxT("&First dummy item"));
-    drop_menu->Append(wxID_ANY, wxT("&Second dummy item"));
-    //drop_menu->AppendSeparator();
-    //drop_menu->Append(wxID_EXIT, wxT("Exit"));
-    ToolBar->SetDropdownMenu(ID_NEW_FROM_TEMPLATE, drop_menu);
+	ToolBar->AddTool(ID_NEW, _("Новый"), wxArtProvider::GetBitmap(wxART_NEW, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_NEW_FROM_TEMPLATE, _("Из шаблона"), wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_BUTTON, wxSize(24,24)), (wxString)wxEmptyString, wxITEM_DROPDOWN);
+	wxMenu *drop_menu = new wxMenu;
+	drop_menu->Append(wxID_ANY, _("&First dummy item"));
+	drop_menu->Append(wxID_ANY, _("&Second dummy item"));
+	//drop_menu->AppendSeparator();
+	//drop_menu->Append(wxID_EXIT, wxT("Exit"));
+	ToolBar->SetDropdownMenu(ID_NEW_FROM_TEMPLATE, drop_menu);
 
-	ToolBar->AddTool(ID_LOAD, wxString::FromUTF8Unchecked(_("Открыть")), wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, wxSize(24,24)));
-	ToolBar->AddTool(ID_SAVE, wxString::FromUTF8Unchecked(_("Сохранить")), wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, wxSize(24,24)));
-	ToolBar->AddTool(ID_SAVE_AS, wxString::FromUTF8Unchecked(_("Сохранить как")), wxArtProvider::GetBitmap(wxART_FILE_SAVE_AS, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_LOAD, _("Открыть"), wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_SAVE, _("Сохранить"), wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, wxSize(24,24)));
+	ToolBar->AddTool(ID_SAVE_AS, _("Сохранить как"), wxArtProvider::GetBitmap(wxART_FILE_SAVE_AS, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->Realize();
 	//CommandsTreeCtrl->Connect(wxEVT_UPDATE_UI, wxUpdateUIEventHandler(rmmcFrame::UpdateUi), NULL, this);
 }
@@ -477,25 +498,59 @@ void rmmcFrame::OnCommandsTreeCtrlBeginDrag(wxTreeEvent &event) {
 	event.Allow();
 }
 
-void rmmcFrame::OnButton2Click(wxCommandEvent& event)
-{
-    {
-        //Маленький хак для подавления сообщения об ошибке
-        wxLogNull SilenceExclamationmark;
-        //if (!xml_config->Load(wxString::FromUTF8Unchecked("resources/templates/Стандартный/RadialMenu.xml"))) {
-        if (!xml_config->Load("resources/templates/Std/RadialMenu.xml")) {
-            wxMessageBox(wxString::FromUTF8Unchecked(_("Ошибка чтения файла")), _("Welcome to..."));
-            return;
-        }
-    }
+void rmmcFrame::OnButton2Click(wxCommandEvent &event) {
+	{
+		//Маленький хак для подавления сообщения об ошибке
+		wxLogNull SilenceExclamationmark;
+		//if (!xml_config->Load(_("resources/templates/Стандартный/RadialMenu.xml"))) {
+		if (!xml_config->Load("resources/templates/Std/RadialMenu.xml")) {
+			wxMessageBox(_("Ошибка чтения файла"), _("Welcome to..."));
+			return;
+		}
+	}
 
-    //CommandsTreeCtrl->DeleteAllItems();
-    //FillTreeCtrlNodeWithXMLData(CommandsTreeCtrl, nullptr, xml_config->GetRoot());
-    //ParseXMLDataToTreeCtrl(CommandsTreeCtrl, xml_config->GetRoot());
-    FillTreeCtrlWithData(CommandsTreeCtrl, xml_config);
+	//CommandsTreeCtrl->DeleteAllItems();
+	//FillTreeCtrlNodeWithXMLData(CommandsTreeCtrl, nullptr, xml_config->GetRoot());
+	//ParseXMLDataToTreeCtrl(CommandsTreeCtrl, xml_config->GetRoot());
+	FillTreeCtrlWithData(CommandsTreeCtrl, xml_config);
 }
 
-void rmmcFrame::OnButton3Click(wxCommandEvent& event)
+void rmmcFrame::OnButton3Click(wxCommandEvent &event) {
+	//xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
+}
+
+void rmmcFrame::OnButton1Click(wxCommandEvent &event) {
+	if (DirDialog1->ShowModal() == wxID_OK) {
+		TextCtrl1->Clear();
+		*TextCtrl1 << DirDialog1->GetPath();
+	}
+}
+
+void rmmcFrame::OnButton2Click1(wxCommandEvent& event)
 {
-    //xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
+    wxLogNull SilenceExclamationmark;
+    TextCtrl2->Clear();
+    wxString path = TextCtrl1->GetLineText(0) + "/res/scripts/item_defs/vehicles/";
+
+    wxDir dir(path);\
+    if (!dir.IsOpened()) {
+        *TextCtrl2 << "Folder Error.";
+    }
+
+    wxString dir_name;
+    bool cont = dir.GetFirst(&dir_name, wxEmptyString, wxDIR_DIRS);
+    while (cont) {
+        djfTanksList tank_list;
+        if (tank_list.Load(path + dir_name + "/list.xml")) {
+            *TextCtrl2 << path + dir_name + "/list.xml" << "\r\n";
+        }
+        cont = dir.GetNext(&dir_name);
+    }
+
+    /*
+    djfTanksList tank_list;
+    if (!tank_list.Load()) {
+        *TextCtrl2 << "File Error.";
+    }
+    */
 }

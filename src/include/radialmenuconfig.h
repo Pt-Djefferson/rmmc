@@ -5,16 +5,27 @@
 #include <wx/sstream.h>
 #include <wx/treectrl.h>
 #include <wx/hashmap.h>
+#include "treectrlwithchecks.h"
+#include "tankslist.h"
+
+#ifdef _
+#undef _
+#endif
+#define _(s) wxString::FromUTF8Unchecked(wxGetTranslation((s)))
+
 
 extern wxStringToStringHashMap Title;
 
+/*
 enum class djfItemNodeState : int {
     Commented = 0,
     Normal,
     Properties,
     Deleted,
+    Command,
     Unknown
 };
+*/
 
 class djfTreeItemNodeData : public wxTreeItemData {
 public:
@@ -31,7 +42,7 @@ public:
             return Title[m_xml_node_name];
         }
     };*/
-    djfItemNodeState GetState() { return m_node_state; };
+    ItemState GetState() { return m_node_state; };
     /*
     wxColour GetColour() {
         djfItemNodeState state = m_inherited_state;
@@ -46,18 +57,18 @@ public:
 
     }
     */
-    /*djfItemNodeState*/ void SetState(const djfItemNodeState state) { m_node_state = state; }
+    /*djfItemNodeState*/ void SetState(const ItemState state) { m_node_state = state; }
     wxXmlNode* GetXmlNode() { return m_xml_node; }
 private:
-    djfItemNodeState GetNodeState(const wxXmlNode* parent_xml_node) {
+    ItemState GetNodeState(const wxXmlNode* parent_xml_node) {
         m_xml_node = nullptr;
-        if (m_xml_node_name == "GlobalProperties") return djfItemNodeState::Properties;
+        if (m_xml_node_name == "GlobalProperties") return ItemState::Properties;
         wxXmlNode* child = parent_xml_node->GetChildren();
         //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {
             if (child->GetName() == m_xml_node_name) {
                 m_xml_node = child;
-                return  djfItemNodeState::Normal;
+                return  ItemState::Normal;
             } else if (child->GetType() == wxXML_COMMENT_NODE) {
                 //Маленький хак для подавления сообщения об ошибке
                 wxLogNull SilenceExclamationmark;
@@ -66,14 +77,14 @@ private:
                 wxXmlDocument comment_doc;
                 if (comment_doc.Load(comment_stream) && (comment_doc.GetRoot()->GetName() == m_xml_node_name)) {
                     m_xml_node = child;
-                    return djfItemNodeState::Commented;
+                    return ItemState::Commented;
                 }
             }
             child = child->GetNext();
         }
-        return djfItemNodeState::Deleted;
+        return ItemState::Deleted;
     }
-    djfItemNodeState m_node_state;
+    ItemState m_node_state;
     //djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
     wxXmlNode* m_xml_node;
