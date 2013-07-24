@@ -538,13 +538,19 @@ void rmmcFrame::OnButton2Click1(wxCommandEvent& event)
     }
 
     wxString dir_name;
+    djfTanksList tank_list;
+
     bool cont = dir.GetFirst(&dir_name, wxEmptyString, wxDIR_DIRS);
     while (cont) {
-        djfTanksList tank_list;
-        if (tank_list.Load(path + dir_name + "/list.xml")) {
-            *TextCtrl2 << path + dir_name + "/list.xml" << "\r\n";
+        if (tank_list.Load(path + dir_name + "\\list.xml")) {
+            int cnt = tank_list.m_tags_dictionary.GetCount();
+            *TextCtrl2 << path + dir_name + "\\list.xml (" << cnt << ")\r\n";
+            //*TextCtrl2 << tank_list.m_tags_dictionary;
         }
         cont = dir.GetNext(&dir_name);
+    }
+    for (auto it : tank_list.m_tags_dictionary) {
+        *TextCtrl2 << it << "\r\n";
     }
 
     /*
