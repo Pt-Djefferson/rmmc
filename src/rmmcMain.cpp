@@ -530,27 +530,21 @@ void rmmcFrame::OnButton2Click1(wxCommandEvent& event)
 {
     wxLogNull SilenceExclamationmark;
     TextCtrl2->Clear();
-    wxString path = TextCtrl1->GetLineText(0) + "/res/scripts/item_defs/vehicles/";
 
-    wxDir dir(path);\
-    if (!dir.IsOpened()) {
-        *TextCtrl2 << "Folder Error.";
-    }
-
-    wxString dir_name;
     djfTanksList tank_list;
+    tank_list.Load(TextCtrl1->GetLineText(0));
 
-    bool cont = dir.GetFirst(&dir_name, wxEmptyString, wxDIR_DIRS);
-    while (cont) {
-        if (tank_list.Load(path + dir_name + "\\list.xml")) {
-            int cnt = tank_list.m_tags_dictionary.GetCount();
-            *TextCtrl2 << path + dir_name + "\\list.xml (" << cnt << ")\r\n";
-            //*TextCtrl2 << tank_list.m_tags_dictionary;
-        }
-        cont = dir.GetNext(&dir_name);
-    }
-    for (auto it : tank_list.m_tags_dictionary) {
-        *TextCtrl2 << it << "\r\n";
+    //for (auto it : tank_list.m_tags_dictionary) {
+    //    *TextCtrl2 << it << "\r\n";
+    //}
+
+    //wxString xml_str = "";
+    //wxStringOutputStream out_stream(&xml_str);
+    //tank_list.m_undecoded_xml.Save(out_stream);
+    //TextCtrl2->AppendText(xml_str);
+
+    for (wxUint32 i = 0; i < tank_list.m_tanks.GetCount(); ++i) {
+        *TextCtrl2 << tank_list.m_tanks[i] + " = " + tank_list.m_tanks_strings[i] + "\r\n";
     }
 
     /*

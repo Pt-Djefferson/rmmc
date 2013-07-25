@@ -29,7 +29,6 @@
 #include "treectrlwithchecks.h"
 #include <wx/artprov.h>
 #include "version.h"
-#include <wx/dir.h>
 
 //#include <wx/event.h>
 
