@@ -20,6 +20,13 @@ void TitlesInit() {
         Title["CommonCommands"] = _("Общие команды");
         Title["TeamCommands"] = _("Созюник в прицеле");
         Title["EnemyCommands"] = _("Противник в прицеле");
+        Title["USSR"] = _("СССР");
+        Title["Germany"] = _("Германия");
+        Title["USA"] = _("США");
+        Title["France"] = _("Франция");
+        Title["GB"] = _("Великобритания");
+        Title["China"] = _("Китай");
+        Title["Groups"] = _("Группы");
 }
 
 wxString djfTreeItemNodeData::GetTitle() {
@@ -32,10 +39,7 @@ wxString djfTreeItemNodeData::GetTitle() {
     }
 };
 
-void UpdateTreeCtrlStatesAndColours(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour) {
-}
-
-void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour) {
+void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
     if (tree_ctrl == nullptr || xml_doc == nullptr) return;
     if (Title.empty()) TitlesInit();
 
@@ -43,6 +47,7 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
     wxString root_section_name[10] = {"TankMenu", "lightTankMenu", "mediumTankMenu", "heavyTankMenu", "AT-SPGMenu", "SPGMenu", "TankSpecificCommands", "MapCommands", "HotkeyOnlyCommands", "GlobalProperties"};
     wxString global_property_name[3] = {"MapMenuKey", "MenuReloadHotkey", "HotkeyCommandDelay"};
     wxString command_leaf_name[3] = {"CommonCommands", "TeamCommands", "EnemyCommands"};
+    wxString nation_name[7] = {"USSR", "Germany", "USA", "France", "GB", "China", "Groups"};
 
     //TODO: такое шибанутое формирование дерева элементов можно заменить шаблоном
     wxXmlNode* doc_node = xml_doc->GetDocumentNode();
@@ -53,18 +58,24 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
         return;
     }
     tree_ctrl->DeleteAllItems();
-    wxTreeItemId root_id = tree_ctrl->AddRoot(root_node_data->GetTitle(), 0, 0, root_node_data);
+    wxTreeItemId root_id = tree_ctrl->AddRoot(root_node_data->GetTitle(), -1, -1, root_node_data);
     tree_ctrl->SetItemState(root_id, (int)root_node_data->GetState());
 
     djfTreeItemNodeData* node_data;
     for (unsigned int i = 0; i < 10; ++i) {
-        node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), root_section_name[i], colour);
-        wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, node_data->GetTitle(), 0, 0, node_data);
+        node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), root_section_name[i]);
+        wxTreeItemId last_id = tree_ctrl->AppendItem(root_id, node_data->GetTitle(), -1, -1, node_data);
         //Первые 6 пунктов дерева
         if (i < 6) {
             for (unsigned int j = 0; j < 3; ++j) {
-                djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), command_leaf_name[j], colour);
-                wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), 0, 0, child_node_data);
+                djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), command_leaf_name[j]);
+                wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), -1, -1, child_node_data);
+                tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
+            }
+        } else if (i == 6 && node_data->GetState() != ItemState::Deleted) {
+            for (unsigned int j = 0; j < 7; ++j) {
+                djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), nation_name[j]);
+                wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), j, j, child_node_data);
                 tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
             }
         }
@@ -73,8 +84,8 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColou
 
     wxTreeItemId properties_node = tree_ctrl->GetLastChild(root_id);
     for (unsigned int i = 0; i < 3; ++i) {
-        node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), global_property_name[i], colour);
-        wxTreeItemId last_id = tree_ctrl->AppendItem(properties_node, node_data->GetTitle(), 0, 0, node_data);
+        node_data = new djfTreeItemNodeData(xml_doc->GetRoot(), global_property_name[i]);
+        wxTreeItemId last_id = tree_ctrl->AppendItem(properties_node, node_data->GetTitle(), -1, -1, node_data);
         tree_ctrl->SetItemState(last_id, (int)node_data->GetState());
     }
 

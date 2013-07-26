@@ -29,7 +29,7 @@ enum class djfItemNodeState : int {
 
 class djfTreeItemNodeData : public wxTreeItemData {
 public:
-    djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name, wxColour colour = wxNullColour) : m_xml_node_name(xml_node_name), m_colour(colour) {
+    djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name) : m_xml_node_name(xml_node_name) {
         m_node_state = GetNodeState(parent_xml_node);
         //m_inherited_state = djfItemNodeState::Unknown;
     };
@@ -63,6 +63,7 @@ private:
     ItemState GetNodeState(const wxXmlNode* parent_xml_node) {
         m_xml_node = nullptr;
         if (m_xml_node_name == "GlobalProperties") return ItemState::Properties;
+        if (parent_xml_node == nullptr) return ItemState::Virtual;
         wxXmlNode* child = parent_xml_node->GetChildren();
         //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {
@@ -88,10 +89,9 @@ private:
     //djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
     wxXmlNode* m_xml_node;
-    wxColour m_colour;
 };
 
-void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc, wxColour colour = wxNullColour);
+void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc);
 void TreeItemStateChange(wxTreeCtrl* tree_ctrl, const wxTreeItemId& item_id);
 
 

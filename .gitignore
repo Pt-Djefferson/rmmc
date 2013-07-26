@@ -229,3 +229,10 @@ Debug/
 *.mo
 src/resources/ingame/res/scripts/item_defs/vehicles/*/*.xml
 src/resources/ingame/res/scripts/item_defs/vehicles/*/*/*.xml
+ussr.png
+germany.png
+usa.png
+france.png
+uk.png
+china.png
+japan.png

@@ -87,6 +87,7 @@ private:
 	wxBitmapButton* BitmapButton1;
 	wxButton* Button2;
 	wxImageList* ToolBarImageList;
+	wxImageList* TreeCtrlImageList;
 	wxStatusBar* StatusBar1;
 	wxDirDialog* DirDialog1;
 	wxImageList* ItemStatesImageList;

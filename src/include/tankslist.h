@@ -5,11 +5,11 @@
 #include <wx/wfstream.h>
 #include <wx/datstrm.h>
 #include <wx/arrstr.h>
-//#include <wx/hashmap.h>
 #include <wx/xml/xml.h>
 #include <wx/filename.h>
 #include <wx/dynarray.h>
 #include <wx/dir.h>
+#include <wx/hashmap.h>
 
 
 #define djfELEMENT 0
@@ -31,6 +31,8 @@ struct Descriptor {
 };
 
 WX_DECLARE_OBJARRAY(Descriptor, ArrayOfDescriptors);
+WX_DEFINE_ARRAY_INT(int, ArrayOfOriginalStringsOffsets);
+WX_DEFINE_ARRAY_INT(int, ArrayOfTranslationStringsOffsets);
 
 class djfTanksList {
 public:
@@ -42,8 +44,10 @@ public:
 	wxArrayString m_tanks;
 	wxArrayString m_tanks_strings;
 	wxArrayString m_tanks_names;
-	//wxStringToNumHashMap m_names_hash;
 	wxXmlDocument m_undecoded_xml;
+	wxString test = "";
+	wxStringToStringHashMap m_local_names;
+	wxStringToStringHashMap m_names_local;
 protected:
 private:
     bool UnpackXMLFile(const wxString& path, const wxString& nation, const wxString& file_name);
@@ -57,7 +61,7 @@ private:
     wxString ReadBoolean(wxFileInputStream& input_stream, wxUint32 length);
     wxString ReadBase64(wxFileInputStream& input_stream, wxUint32 length);
     void FillTanksArraysFromXML();
-    bool LoadMOFile(const wxString& file_name);
+    bool LoadMOFile(const wxString& path, const wxString& file_name);
 	wxDECLARE_NO_COPY_CLASS(djfTanksList);
 };
 

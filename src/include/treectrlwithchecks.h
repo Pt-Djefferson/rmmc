@@ -13,6 +13,7 @@ enum class ItemState : int {
     Properties,
     Deleted,
     Command,
+    Virtual,
     Unknown
 };
 

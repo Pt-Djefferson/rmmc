@@ -38,17 +38,16 @@ bool djfTanksList::Load(const wxString &game_dir) {
     FillTanksArraysFromXML();
 
     //========= MO ===========
+    m_local_names.clear();
     wxString mo_dir_path = game_dir + "/res/text/LC_MESSAGES/";
     wxDir mo_res_dir(mo_dir_path);
     if (!mo_res_dir.IsOpened()) {
         return false;
     }
     wxString mo_file_name;
-    wxString mo_full_file_name;
     cont = mo_res_dir.GetFirst(&mo_file_name, "*_vehicles.mo", wxDIR_FILES);
     while (cont) {
-        mo_full_file_name = mo_dir_path + mo_file_name;
-        if (!LoadMOFile(mo_full_file_name)) {
+        if (!LoadMOFile(mo_dir_path, mo_file_name)) {
             return false;
         }
         cont = mo_res_dir.GetNext(&mo_file_name);
@@ -239,9 +238,14 @@ wxString djfTanksList::ReadBase64(wxFileInputStream& input_stream, wxUint32 leng
 	return result;
 }
 
-bool djfTanksList::LoadMOFile(const wxString& file_name) {
-	wxFileInputStream input_stream(file_name);
+bool djfTanksList::LoadMOFile(const wxString& path, const wxString& file_name) {
+	wxFileInputStream input_stream(path + file_name);
 	wxDataInputStream data_stream(input_stream);
+
+    ArrayOfOriginalStringsOffsets original_table;
+    ArrayOfTranslationStringsOffsets translation_table;
+	wxArrayString original_strings;
+	wxArrayString translation_strings;
 
 	if (!data_stream.IsOk()) return false;
 	wxUint32 header = data_stream.Read32();
@@ -251,8 +255,41 @@ bool djfTanksList::LoadMOFile(const wxString& file_name) {
 	wxUint32 number_of_strings = data_stream.Read32();
 	wxUint32 original_strings_offset    = data_stream.Read32();
 	wxUint32 translation_strings_offset = data_stream.Read32();
-	wxUint32 hashing_table_size   = data_stream.Read32();
-	wxUint32 hashing_table_offset = data_stream.Read32();
+	//wxUint32 hashing_table_size   = data_stream.Read32();
+	//wxUint32 hashing_table_offset = data_stream.Read32();
 
+    input_stream.SeekI(original_strings_offset, wxFromStart);
+    for (wxUint32 i = 0; i < number_of_strings; ++i) {
+        original_table.Add(data_stream.Read32());
+        original_table.Add(data_stream.Read32());
+    }
+
+    input_stream.SeekI(translation_strings_offset, wxFromStart);
+    for (wxUint32 i = 0; i < number_of_strings; ++i) {
+        translation_table.Add(data_stream.Read32());
+        translation_table.Add(data_stream.Read32());
+    }
+
+    for (wxUint32 i = 0; i < number_of_strings; ++i) {
+        input_stream.SeekI(original_table[i * 2 + 1], wxFromStart);
+        if (input_stream.Eof()) return false;
+        wxCharBuffer buff(original_table[i * 2]);
+        data_stream.Read8((wxUint8*)buff.data(), original_table[i * 2]);
+        wxString current_orig_string = buff;
+        wxString searching_string = "#" + file_name.BeforeFirst('.') + ":" + current_orig_string;
+
+        int pos = m_tanks_strings.Index(searching_string);
+        if ( pos != wxNOT_FOUND) {
+            input_stream.SeekI(translation_table[i * 2 + 1], wxFromStart);
+            if (input_stream.Eof()) return false;
+            wxCharBuffer buff(translation_table[i * 2]);
+            data_stream.Read8((wxUint8*)buff.data(), translation_table[i * 2]);
+            wxString current_trans_string = buff;
+            current_trans_string = wxString::FromUTF8Unchecked(current_trans_string);
+
+            m_local_names[current_trans_string] = m_tanks[pos];
+            m_names_local[m_tanks[pos]] = current_trans_string;
+        }
+    }
 	return true;
 }
