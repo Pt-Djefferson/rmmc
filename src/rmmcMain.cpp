@@ -1641,6 +1641,8 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
 	// Set the images for CommandsTreeCtrl.
 	CommandsTreeCtrl->SetImageList(TreeCtrlImageList);
+	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_DRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
+	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_RDRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton1Click);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click1);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&rmmcFrame::OnQuit);

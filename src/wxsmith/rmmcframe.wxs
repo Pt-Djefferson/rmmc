@@ -88,6 +88,8 @@
 											<item2>TreeCtrlImageList</item2>
 										</items_text>
 										<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
+										<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_DRAG" />
+										<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_RDRAG" />
 									</object>
 									<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>1</border>
