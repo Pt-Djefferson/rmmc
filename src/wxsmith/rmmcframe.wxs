@@ -66,6 +66,7 @@
 														<default>1</default>
 														<size>24,24</size>
 														<focused>1</focused>
+														<handler function="OnButton3Click" entry="EVT_BUTTON" />
 													</object>
 													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 													<border>1</border>
@@ -78,14 +79,20 @@
 								</object>
 								<object class="sizeritem">
 									<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
-										<image_list>TreeCtrlImageList</image_list>
+										<image_list>ImageList1</image_list>
 										<tree_items>
 											<item>CommandsTreeCtrl</item>
-											<item>TreeCtrlImageList</item>
+											<item>ImageList1</item>
+											<item>0,#000000,0,-1,-1,-1,-1,root</item>
+											<item>1,#000000,0,0,-1,-1,-1,Основные команды</item>
+											<item>1,#000000,0,1,-1,-1,-1,Команды для легких танков</item>
 										</tree_items>
 										<items_text>
 											<item2>CommandsTreeCtrl</item2>
-											<item2>TreeCtrlImageList</item2>
+											<item2>ImageList1</item2>
+											<item2>0,#000000,0,-1,-1,-1,-1,root</item2>
+											<item2>1,#000000,0,0,-1,-1,-1,Основные команды</item2>
+											<item2>1,#000000,0,1,-1,-1,-1,Команды для легких танков</item2>
 										</items_text>
 										<style>wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE</style>
 										<handler function="OnCommandsTreeCtrlBeginDrag" entry="EVT_TREE_BEGIN_DRAG" />
@@ -159,14 +166,70 @@
 											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 										</object>
+										<object class="sizeritem">
+											<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
+												<object class="wxBitmapButton" name="ID_BITMAPBUTTON6" variable="BitmapButton6" member="yes">
+													<bitmap>C:\Projects\git\rmmc\src\icons\commands\Attack.png</bitmap>
+													<default>1</default>
+													<pos>32,32</pos>
+													<size>42,42</size>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="StaticBitmap1" member="yes">
+													<pos>80,32</pos>
+													<size>42,42</size>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="StaticBitmap2" member="yes">
+													<pos>136,48</pos>
+													<size>16,16</size>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="StaticBitmap3" member="yes">
+													<pos>160,48</pos>
+													<size>16,16</size>
+													<style>0</style>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="StaticBitmap4" member="yes">
+													<pos>184,48</pos>
+													<style>0</style>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="StaticBitmap5" member="yes">
+													<pos>208,48</pos>
+													<style>0</style>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="StaticBitmap6" member="yes">
+													<pos>232,48</pos>
+													<style>0</style>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP7" variable="StaticBitmap7" member="yes">
+													<pos>256,48</pos>
+													<style>0</style>
+												</object>
+												<object class="wxStaticBitmap" name="ID_STATICBITMAP8" variable="StaticBitmap8" member="yes">
+													<bitmap>C:\Projects\git\rmmc\src\icons\ussr.png</bitmap>
+													<pos>136,72</pos>
+													<size>16,10</size>
+													<style>0</style>
+												</object>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
 									</object>
 									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
 								<object class="sizeritem">
-									<object class="wxBoxSizer" variable="BoxSizer11" member="no" />
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<object class="wxBoxSizer" variable="BoxSizer11" member="no">
+										<object class="sizeritem">
+											<object class="wxStaticBitmap" name="ID_STATICBITMAP9" variable="StaticBitmap9" member="yes">
+												<size>300,300</size>
+											</object>
+											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+										</object>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -3165,6 +3228,18 @@
 			</image_text>
 			<image_height>10</image_height>
 			<image_count>7</image_count>
+		</object>
+		<object class="wxImageList" variable="ImageList1" member="yes">
+			<image_list>
+				<item>18</item>
+				<item>18</item>
+			</image_list>
+			<image_text>
+				<item2>18</item2>
+				<item2>18</item2>
+			</image_text>
+			<image_width>18</image_width>
+			<image_height>18</image_height>
 		</object>
 	</object>
 </wxsmith>

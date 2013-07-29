@@ -60,6 +60,17 @@ const long rmmcFrame::ID_TEXTCTRL1 = wxNewId();
 const long rmmcFrame::ID_BUTTON1 = wxNewId();
 const long rmmcFrame::ID_TEXTCTRL2 = wxNewId();
 const long rmmcFrame::ID_BUTTON2 = wxNewId();
+const long rmmcFrame::ID_BITMAPBUTTON6 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP1 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP2 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP3 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP4 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP5 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP6 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP7 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP8 = wxNewId();
+const long rmmcFrame::ID_PANEL2 = wxNewId();
+const long rmmcFrame::ID_STATICBITMAP9 = wxNewId();
 const long rmmcFrame::ID_PANEL1 = wxNewId();
 const long rmmcFrame::ID_MENUITEM1 = wxNewId();
 const long rmmcFrame::idMenuAbout = wxNewId();
@@ -126,6 +137,10 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	BoxSizer5->Add(BoxSizer8, 0, wxTOP|wxBOTTOM|wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer2->Add(BoxSizer5, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	CommandsTreeCtrl = new TreeCtrlWithChecks(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HIDE_ROOT|wxTR_MULTIPLE|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
+	wxTreeItemId CommandsTreeCtrl_Item1 = CommandsTreeCtrl->AddRoot(_T("root"));
+	wxTreeItemId CommandsTreeCtrl_Item2 = CommandsTreeCtrl->AppendItem(CommandsTreeCtrl_Item1, _T("Основные команды"));
+	wxTreeItemId CommandsTreeCtrl_Item3 = CommandsTreeCtrl->AppendItem(CommandsTreeCtrl_Item1, _T("Команды для легких танков"));
+	CommandsTreeCtrl->ScrollTo(CommandsTreeCtrl_Item2);
 	BoxSizer2->Add(CommandsTreeCtrl, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
 	BoxSizer9->Add(BoxSizer2, 1, wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
@@ -144,9 +159,23 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	Button2 = new wxButton(Panel1, ID_BUTTON2, _("Label"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer13->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer7->Add(BoxSizer13, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	Panel2 = new wxPanel(Panel1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+	BitmapButton6 = new wxBitmapButton(Panel2, ID_BITMAPBUTTON6, wxBitmap(wxImage(_T("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Attack.png"))), wxPoint(32,32), wxSize(42,42), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON6"));
+	BitmapButton6->SetDefault();
+	StaticBitmap1 = new wxStaticBitmap(Panel2, ID_STATICBITMAP1, wxNullBitmap, wxPoint(80,32), wxSize(42,42), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
+	StaticBitmap2 = new wxStaticBitmap(Panel2, ID_STATICBITMAP2, wxNullBitmap, wxPoint(136,48), wxSize(16,16), wxSIMPLE_BORDER, _T("ID_STATICBITMAP2"));
+	StaticBitmap3 = new wxStaticBitmap(Panel2, ID_STATICBITMAP3, wxNullBitmap, wxPoint(160,48), wxSize(16,16), 0, _T("ID_STATICBITMAP3"));
+	StaticBitmap4 = new wxStaticBitmap(Panel2, ID_STATICBITMAP4, wxNullBitmap, wxPoint(184,48), wxDefaultSize, 0, _T("ID_STATICBITMAP4"));
+	StaticBitmap5 = new wxStaticBitmap(Panel2, ID_STATICBITMAP5, wxNullBitmap, wxPoint(208,48), wxDefaultSize, 0, _T("ID_STATICBITMAP5"));
+	StaticBitmap6 = new wxStaticBitmap(Panel2, ID_STATICBITMAP6, wxNullBitmap, wxPoint(232,48), wxDefaultSize, 0, _T("ID_STATICBITMAP6"));
+	StaticBitmap7 = new wxStaticBitmap(Panel2, ID_STATICBITMAP7, wxNullBitmap, wxPoint(256,48), wxDefaultSize, 0, _T("ID_STATICBITMAP7"));
+	StaticBitmap8 = new wxStaticBitmap(Panel2, ID_STATICBITMAP8, wxBitmap(wxImage(_T("C:\\Projects\\git\\rmmc\\src\\icons\\ussr.png")).Rescale(wxSize(16,10).GetWidth(),wxSize(16,10).GetHeight())), wxPoint(136,72), wxSize(16,10), 0, _T("ID_STATICBITMAP8"));
+	BoxSizer7->Add(Panel2, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3->Add(BoxSizer7, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer11 = new wxBoxSizer(wxHORIZONTAL);
-	BoxSizer3->Add(BoxSizer11, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	StaticBitmap9 = new wxStaticBitmap(Panel1, ID_STATICBITMAP9, wxNullBitmap, wxDefaultPosition, wxSize(300,300), wxSIMPLE_BORDER, _T("ID_STATICBITMAP9"));
+	BoxSizer11->Add(StaticBitmap9, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3->Add(BoxSizer11, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer9->Add(BoxSizer3, 3, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer9, 2, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
@@ -1637,10 +1666,14 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	TreeCtrlImageList->Add(wxBitmap(TreeCtrlImageList_4_XPM));
 	TreeCtrlImageList->Add(wxBitmap(TreeCtrlImageList_5_XPM));
 	TreeCtrlImageList->Add(wxBitmap(TreeCtrlImageList_6_XPM));
+	ImageList1 = new wxImageList(18, 18, 1);
 
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
+	Connect(ID_BITMAPBUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton3Click);
 	// Set the images for CommandsTreeCtrl.
-	CommandsTreeCtrl->SetImageList(TreeCtrlImageList);
+	CommandsTreeCtrl->SetImageList(ImageList1);
+	CommandsTreeCtrl->SetItemImage(CommandsTreeCtrl_Item2, 0, wxTreeItemIcon_Normal);
+	CommandsTreeCtrl->SetItemImage(CommandsTreeCtrl_Item3, 1, wxTreeItemIcon_Normal);
 	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_DRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
 	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_RDRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton1Click);
@@ -1713,6 +1746,59 @@ void rmmcFrame::OnButton2Click(wxCommandEvent &event) {
 
 void rmmcFrame::OnButton3Click(wxCommandEvent &event) {
 	//xml_config->Save("c:\\Projects\\RMConf\\resources\\templates\\new\\RadialMenu-unc.xml");
+	wxImage image("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Attack.png");
+	image.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap1->SetBitmap(wxBitmap(image));
+	StaticBitmap2->SetBitmap(wxBitmap(image.Scale(16, 16, wxIMAGE_QUALITY_HIGH)));
+
+	wxImage image2("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Reload.png");
+	image2.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image2.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap3->SetBitmap(wxBitmap(image2.Scale(16, 16, wxIMAGE_QUALITY_HIGH )));
+	wxImage image3("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\AttackSPG.png");
+	image3.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image3.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap4->SetBitmap(wxBitmap(image3.Scale(16, 16, wxIMAGE_QUALITY_HIGH )));
+	wxImage image4("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Backtobase.png");
+	image4.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image4.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap5->SetBitmap(wxBitmap(image4.Scale(16, 16, wxIMAGE_QUALITY_HIGH )));
+	wxImage image5("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Followme.png");
+	image5.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image5.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap6->SetBitmap(wxBitmap(image5.Scale(16, 16, wxIMAGE_QUALITY_HIGH )));
+	wxImage image6("C:\\Projects\\git\\rmmc\\src\\icons\\commands\\Helpme.png");
+	image6.Resize(wxSize(122,122), wxPoint(-40,-40));
+	image6.Resize(wxSize(42,42), wxPoint(0,0));
+	StaticBitmap7->SetBitmap(wxBitmap(image6.Scale(16, 16, wxIMAGE_QUALITY_HIGH)));
+	//ImageList1->Add(image);
+	//CommandsTreeCtrl->GetItemImage(CommandsTreeCtrl_Item3);
+	ImageList1->Add(wxBitmap(image.Scale(18, 18, wxIMAGE_QUALITY_HIGH)));
+	ImageList1->Add(wxBitmap(image2.Scale(18, 18, wxIMAGE_QUALITY_HIGH)));
+
+	wxFFileInputStream input_stream("C:\\Projects\\git\\rmmc\\src\\resources\\ingame\\res\\packages\\gui.pkg");
+	wxZipInputStream zip_stream(input_stream);
+
+    wxZipEntry* entry;
+    entry = zip_stream.GetNextEntry();
+    while (entry) {
+        if (entry->GetName() == "gui\\maps\\icons\\map\\01_karelia.png") break;
+        entry = zip_stream.GetNextEntry();
+    }
+
+    TextCtrl2->AppendText(entry->GetName());
+    /*
+    wxString name = wxZipEntry::GetInternalName("gui\\maps\\icons\\map\\01_karelia.png");
+    wxZipEntry entry(name);
+    //wxZipEntry entry("gui\\maps\\icons\\map\\01_karelia.png");
+    if (zip_stream.OpenEntry(entry)) {
+        */
+        wxImage img(zip_stream, wxBITMAP_TYPE_PNG);
+        StaticBitmap9->SetBitmap(wxBitmap(img));
+    /*
+    }
+    */
 }
 
 void rmmcFrame::OnButton1Click(wxCommandEvent &event) {

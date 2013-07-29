@@ -1,5 +1,10 @@
 #ifndef TANKSLIST_H
 #define TANKSLIST_H
+/**
+ * Алгоритм чтения запакованных файлов XML основан на Packed_Section.cs,
+ * входящего в World Of Tanks Mod Tools, автор: KatzSmile, распространяемый
+ * по лицензии GPL v3
+ */
 
 #include <wx/settings.h>
 #include <wx/wfstream.h>
