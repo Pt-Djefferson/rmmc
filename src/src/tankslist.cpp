@@ -79,6 +79,7 @@ void djfTanksList::FillTanksArraysFromXML() {
 
 bool djfTanksList::UnpackXMLFile(const wxString& path, const wxString& nation, const wxString& file_name) {
 	wxFileInputStream input_stream(path + nation + file_name);
+	if (!input_stream.IsOk()) return false;
 	wxDataInputStream data_stream(input_stream);
 
 	if (!data_stream.IsOk()) return false;
@@ -240,6 +241,7 @@ wxString djfTanksList::ReadBase64(wxFileInputStream& input_stream, wxUint32 leng
 
 bool djfTanksList::LoadMOFile(const wxString& path, const wxString& file_name) {
 	wxFileInputStream input_stream(path + file_name);
+    if (!input_stream.IsOk()) return false;
 	wxDataInputStream data_stream(input_stream);
 
     ArrayOfOriginalStringsOffsets original_table;

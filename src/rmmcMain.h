@@ -31,6 +31,7 @@
 #include <wx/artprov.h>
 #include "version.h"
 #include <wx/zipstrm.h>
+#include "swf.h"
 
 //#include <wx/event.h>
 

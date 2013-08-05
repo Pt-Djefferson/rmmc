@@ -1813,32 +1813,20 @@ void rmmcFrame::OnButton2Click1(wxCommandEvent& event)
     wxLogNull SilenceExclamationmark;
     TextCtrl2->Clear();
 
+    /*
     djfTanksList tank_list;
     tank_list.Load(TextCtrl1->GetLineText(0));
 
-    //for (auto it : tank_list.m_tags_dictionary) {
-    //    *TextCtrl2 << it << "\r\n";
-    //}
-
-    //wxString xml_str = "";
-    //wxStringOutputStream out_stream(&xml_str);
-    //tank_list.m_undecoded_xml.Save(out_stream);
-    //TextCtrl2->AppendText(xml_str);
-
-    //for (wxUint32 i = 0; i < tank_list.m_tanks.GetCount(); ++i) {
-    //    *TextCtrl2 << tank_list.m_tanks[i] + " = " + tank_list.m_tanks_strings[i] + "\r\n";
-    //}
-    //m_local_names
     for (auto it : tank_list.m_local_names) {
         *TextCtrl2 << it.first << " - " << it.second << "\r\n";
     }
-
-    //*TextCtrl2 << tank_list.test << "\r\n";
-
-    /*
-    djfTanksList tank_list;
-    if (!tank_list.Load()) {
-        *TextCtrl2 << "File Error.";
-    }
     */
+
+    wxImage img;
+    if (LoadImageFromSwfInPKG("C:\\Projects\\git\\rmmc\\src\\resources\\ingame\\res\\packages\\gui.pkg", "gui\\flash\\RadialMenu.swf", 40, img)) {
+        if (img.IsOk()) {
+            img.SaveFile("test.png", wxBITMAP_TYPE_PNG);
+        }
+    }
+
 }
