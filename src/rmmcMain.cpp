@@ -474,13 +474,13 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ItemStatesImageList->Add(wxBitmap(ItemStatesImageList_3_XPM));
 	ToolBarImageList = new wxImageList(16, 16, 1);
 	DirDialog1 = new wxDirDialog(this, _("Select directory"), _("resources\\ingame"), wxDD_DEFAULT_STYLE|wxDD_DIR_MUST_EXIST, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
-	TreeCtrlImageList = new wxImageList(16, 16, 1);
+	TreeCtrlImageList = new wxImageList(18, 18, 1);
 	ImageList1 = new wxImageList(18, 18, 1);
 
 	Connect(ID_BITMAPBUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
 	Connect(ID_BITMAPBUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton3Click);
 	// Set the images for CommandsTreeCtrl.
-	CommandsTreeCtrl->SetImageList(ImageList1);
+	CommandsTreeCtrl->SetImageList(TreeCtrlImageList);
 	CommandsTreeCtrl->SetItemImage(CommandsTreeCtrl_Item2, 0, wxTreeItemIcon_Normal);
 	CommandsTreeCtrl->SetItemImage(CommandsTreeCtrl_Item3, 1, wxTreeItemIcon_Normal);
 	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_BEGIN_DRAG,(wxObjectEventFunction)&rmmcFrame::OnCommandsTreeCtrlBeginDrag);
@@ -514,6 +514,30 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	ToolBar->AddTool(ID_SAVE_AS, _("Сохранить как"), wxArtProvider::GetBitmap(wxART_FILE_SAVE_AS, wxART_BUTTON, wxSize(24,24)));
 	ToolBar->Realize();
 	//CommandsTreeCtrl->Connect(wxEVT_UPDATE_UI, wxUpdateUIEventHandler(rmmcFrame::UpdateUi), NULL, this);
+
+	//Yes = 40
+	//Attack = 42
+	//Reload = 44
+	//No = 46
+	//Backtobase = 48
+	//Helpme = 50
+	//Helpmeex = 52
+	//Support = 54
+	//AttackSPG = 56
+	//Turnback = 58
+	//Stop = 60
+	//Followme = 62
+    wxString ingame_path = "C:\\Projects\\git\\rmmc\\src\\resources\\ingame";
+    wxImage img;
+    for (wxUint16 i = 0; i < 12; ++i) {
+        if (LoadImageFromSwfInPKG(ingame_path + "\\res\\packages\\gui.pkg", "gui\\flash\\RadialMenu.swf", 40 + i * 2, img)) {
+            if (img.IsOk()) {
+                img.Resize(wxSize(122,122), wxPoint(-40,-40));
+                img.Resize(wxSize(42,42), wxPoint(0,0));
+                TreeCtrlImageList->Add(wxBitmap(img.Scale(18, 18, wxIMAGE_QUALITY_HIGH)));
+            }
+        }
+    }
 }
 
 rmmcFrame::~rmmcFrame() {

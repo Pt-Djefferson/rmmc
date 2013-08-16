@@ -33,6 +33,7 @@ wxString djfTreeItemNodeData::GetTitle() {
     if (Title.empty()) TitlesInit();
 
     if (m_xml_node_name == "Command") {
+        /*
         wxString command_str = "";
         wxXmlNode* node = m_xml_node->GetChildren();
         while (node) {
@@ -42,6 +43,8 @@ wxString djfTreeItemNodeData::GetTitle() {
             node = node->GetNext();
         }
         return command_str;
+        */
+        return m_title;
     }
     if (Title.find(m_xml_node_name) == Title.end()) {
         return m_xml_node_name;
@@ -87,7 +90,7 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
                     wxXmlNode* command_xml_node = child_node_data->GetXmlNode()->GetChildren();
                     while (command_xml_node) {
                         djfTreeItemNodeData* command_node_data = new djfTreeItemNodeData(command_xml_node, command_xml_node->GetName());
-                        wxTreeItemId command_last_id = tree_ctrl->AppendItem(child_last_id, command_node_data->GetTitle(), -1, -1, command_node_data);
+                        wxTreeItemId command_last_id = tree_ctrl->AppendItem(child_last_id, command_node_data->GetTitle(), command_node_data->GetCommandIconIndex(), command_node_data->GetCommandIconIndex(), command_node_data);
                         tree_ctrl->SetItemState(command_last_id, (int)command_node_data->GetState());
                         command_xml_node = command_xml_node->GetNext();
                     }

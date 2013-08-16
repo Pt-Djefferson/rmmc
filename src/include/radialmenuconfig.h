@@ -48,6 +48,7 @@ public:
     */
     /*djfItemNodeState*/ void SetState(const ItemState state) { m_node_state = state; }
     wxXmlNode* GetXmlNode() { return m_xml_node; }
+    int GetCommandIconIndex() { return m_command_index; }
 private:
     ItemState GetNodeState(/*const*/ wxXmlNode* parent_xml_node) {
         m_xml_node = nullptr;
@@ -55,6 +56,82 @@ private:
         if (parent_xml_node == nullptr) return ItemState::Virtual;
         if (m_xml_node_name == "Command") {
             m_xml_node = parent_xml_node;
+            wxXmlNode* node = m_xml_node->GetChildren();
+            while (node) {
+                wxString node_name = node->GetName();
+                if (node_name == "Title") {
+                    m_title = node->GetNodeContent();
+                } else if (node_name == "Icon") {
+                    m_icon = node->GetNodeContent();
+                    if (m_icon == "Yes") {
+                        m_icon_index = 0;
+                    } else if (m_icon == "Attack") {
+                        m_icon_index = 1;
+                    } else if (m_icon == "Reload") {
+                        m_icon_index = 2;
+                    } else if (m_icon == "No") {
+                        m_icon_index = 3;
+                    } else if (m_icon == "Backtobase") {
+                        m_icon_index = 4;
+                    } else if (m_icon == "Helpme") {
+                        m_icon_index = 5;
+                    } else if (m_icon == "Helpmeex") {
+                        m_icon_index = 6;
+                    } else if (m_icon == "Support") {
+                        m_icon_index = 7;
+                    } else if (m_icon == "AttackSPG") {
+                        m_icon_index = 8;
+                    } else if (m_icon == "Turnback") {
+                        m_icon_index = 9;
+                    } else if (m_icon == "Stop") {
+                        m_icon_index = 10;
+                    } else if (m_icon == "Followme") {
+                        m_icon_index = 11;
+                    }
+                } else if (node_name == "Text") {
+                    m_text = node->GetNodeContent();
+                } else if (node_name == "ChatMode") {
+                    m_chat_mode = (node->GetNodeContent() == "Team");
+                } else if (node_name == "Command") {
+                    m_command = node->GetNodeContent();
+                    if (m_command == "POSITIVE") {
+                        m_command_index = 0;
+                    } else if (m_command == "ATTACK") {
+                        m_command_index = 1;
+                    } else if (m_command == "RELOADINGGUN") {
+                        m_command_index = 2;
+                    } else if (m_command == "NEGATIVE") {
+                        m_command_index = 3;
+                    } else if (m_command == "BACKTOBASE") {
+                        m_command_index = 4;
+                    } else if (m_command == "HELPME") {
+                        m_command_index = 5;
+                    } else if (m_command == "HELPMEEX") {
+                        m_command_index = 6;
+                    } else if (m_command == "SUPPORTMEWITHFIRE") {
+                        m_command_index = 7;
+                    } else if (m_command == "ATTACKENEMY") {
+                        m_command_index = 8;
+                    } else if (m_command == "TURNBACK") {
+                        m_command_index = 9;
+                    } else if (m_command == "STOP") {
+                        m_command_index = 10;
+                    } else if (m_command == "FOLLOWME") {
+                        m_command_index = 11;
+                    }
+                } else if (node_name == "Variants") {
+                    m_variants = "Future Variants";
+                } else if (node_name == "NoRandomChoice") {
+                    m_no_random_choice = (node->GetNodeContent() == "1");
+                } else if (node_name == "Ping") {
+                    m_ping = node->GetNodeContent();
+                } else if (node_name == "Hotkey") {
+                    m_hotkey = node->GetNodeContent();
+                } else if (node_name == "Cooldown") {
+                    m_cooldown = wxAtoi(node->GetNodeContent());
+                }
+                node = node->GetNext();
+            }
             return  ItemState::Normal;
         }
         wxXmlNode* child = parent_xml_node->GetChildren();
@@ -82,6 +159,18 @@ private:
     //djfItemNodeState m_inherited_state;
     wxString m_xml_node_name;
     wxXmlNode* m_xml_node;
+    wxString m_title = "";
+    wxString m_icon = "";
+    int m_icon_index = -1;
+    wxString m_text = "";
+    bool m_chat_mode = true; //true - team
+    wxString m_command = "";
+    int m_command_index = -1;
+    wxString m_variants = "";
+    bool m_no_random_choice = false;
+    wxString m_ping = "";
+    wxString m_hotkey = "";
+    wxUint16 m_cooldown = 0;
 };
 
 void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc);

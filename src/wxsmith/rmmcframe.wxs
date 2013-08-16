@@ -79,17 +79,17 @@
 								</object>
 								<object class="sizeritem">
 									<object class="wxTreeCtrl" name="ID_TREECTRL1" subclass="TreeCtrlWithChecks" variable="CommandsTreeCtrl" member="yes">
-										<image_list>ImageList1</image_list>
+										<image_list>TreeCtrlImageList</image_list>
 										<tree_items>
 											<item>CommandsTreeCtrl</item>
-											<item>ImageList1</item>
+											<item>TreeCtrlImageList</item>
 											<item>0,#000000,0,-1,-1,-1,-1,root</item>
 											<item>1,#000000,0,0,-1,-1,-1,Основные команды</item>
 											<item>1,#000000,0,1,-1,-1,-1,Команды для легких танков</item>
 										</tree_items>
 										<items_text>
 											<item2>CommandsTreeCtrl</item2>
-											<item2>ImageList1</item2>
+											<item2>TreeCtrlImageList</item2>
 											<item2>0,#000000,0,-1,-1,-1,-1,root</item2>
 											<item2>1,#000000,0,0,-1,-1,-1,Основные команды</item2>
 											<item2>1,#000000,0,1,-1,-1,-1,Команды для легких танков</item2>
@@ -851,13 +851,15 @@
 		</object>
 		<object class="wxImageList" variable="TreeCtrlImageList" member="yes">
 			<image_list>
-				<item>16</item>
-				<item>16</item>
+				<item>18</item>
+				<item>18</item>
 			</image_list>
 			<image_text>
-				<item2>16</item2>
-				<item2>16</item2>
+				<item2>18</item2>
+				<item2>18</item2>
 			</image_text>
+			<image_width>18</image_width>
+			<image_height>18</image_height>
 		</object>
 		<object class="wxImageList" variable="ImageList1" member="yes">
 			<image_list>
