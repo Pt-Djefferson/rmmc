@@ -16,20 +16,9 @@
 
 extern wxStringToStringHashMap Title;
 
-/*
-enum class djfItemNodeState : int {
-    Commented = 0,
-    Normal,
-    Properties,
-    Deleted,
-    Command,
-    Unknown
-};
-*/
-
 class djfTreeItemNodeData : public wxTreeItemData {
 public:
-    djfTreeItemNodeData(const wxXmlNode* parent_xml_node, const wxString& xml_node_name) : m_xml_node_name(xml_node_name) {
+    djfTreeItemNodeData(/*const*/ wxXmlNode* parent_xml_node, const wxString& xml_node_name) : m_xml_node_name(xml_node_name) {
         m_node_state = GetNodeState(parent_xml_node);
         //m_inherited_state = djfItemNodeState::Unknown;
     };
@@ -60,10 +49,14 @@ public:
     /*djfItemNodeState*/ void SetState(const ItemState state) { m_node_state = state; }
     wxXmlNode* GetXmlNode() { return m_xml_node; }
 private:
-    ItemState GetNodeState(const wxXmlNode* parent_xml_node) {
+    ItemState GetNodeState(/*const*/ wxXmlNode* parent_xml_node) {
         m_xml_node = nullptr;
         if (m_xml_node_name == "GlobalProperties") return ItemState::Properties;
         if (parent_xml_node == nullptr) return ItemState::Virtual;
+        if (m_xml_node_name == "Command") {
+            m_xml_node = parent_xml_node;
+            return  ItemState::Normal;
+        }
         wxXmlNode* child = parent_xml_node->GetChildren();
         //if (child == nullptr) return djfItemNodeState::Deleted;
         while (child) {

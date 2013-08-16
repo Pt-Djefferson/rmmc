@@ -32,6 +32,17 @@ void TitlesInit() {
 wxString djfTreeItemNodeData::GetTitle() {
     if (Title.empty()) TitlesInit();
 
+    if (m_xml_node_name == "Command") {
+        wxString command_str = "";
+        wxXmlNode* node = m_xml_node->GetChildren();
+        while (node) {
+            if (node->GetName() == "Title") {
+                command_str += node->GetNodeContent();
+            }
+            node = node->GetNext();
+        }
+        return command_str;
+    }
     if (Title.find(m_xml_node_name) == Title.end()) {
         return m_xml_node_name;
     } else {
@@ -70,7 +81,17 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
             for (unsigned int j = 0; j < 3; ++j) {
                 djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), command_leaf_name[j]);
                 wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), -1, -1, child_node_data);
-                tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
+                tree_ctrl->SetItemState(child_last_id, (int)child_node_data->GetState());
+
+                if (child_node_data->GetState() == ItemState::Normal) {
+                    wxXmlNode* command_xml_node = child_node_data->GetXmlNode()->GetChildren();
+                    while (command_xml_node) {
+                        djfTreeItemNodeData* command_node_data = new djfTreeItemNodeData(command_xml_node, command_xml_node->GetName());
+                        wxTreeItemId command_last_id = tree_ctrl->AppendItem(child_last_id, command_node_data->GetTitle(), -1, -1, command_node_data);
+                        tree_ctrl->SetItemState(command_last_id, (int)command_node_data->GetState());
+                        command_xml_node = command_xml_node->GetNext();
+                    }
+                }
             }
         } else if (i == 6 && node_data->GetState() != ItemState::Deleted) {
             for (unsigned int j = 0; j < 7; ++j) {
