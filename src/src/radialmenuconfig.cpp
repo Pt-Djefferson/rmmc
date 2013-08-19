@@ -73,7 +73,7 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
     }
     tree_ctrl->DeleteAllItems();
     wxTreeItemId root_id = tree_ctrl->AddRoot(root_node_data->GetTitle(), -1, -1, root_node_data);
-    tree_ctrl->SetItemState(root_id, (int)root_node_data->GetState());
+    //tree_ctrl->SetItemState(root_id, (int)root_node_data->GetState());
 
     djfTreeItemNodeData* node_data;
     for (unsigned int i = 0; i < 10; ++i) {
@@ -84,14 +84,14 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
             for (unsigned int j = 0; j < 3; ++j) {
                 djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), command_leaf_name[j]);
                 wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), -1, -1, child_node_data);
-                tree_ctrl->SetItemState(child_last_id, (int)child_node_data->GetState());
+                //tree_ctrl->SetItemState(child_last_id, (int)child_node_data->GetState());
 
                 if (child_node_data->GetState() == ItemState::Normal) {
                     wxXmlNode* command_xml_node = child_node_data->GetXmlNode()->GetChildren();
                     while (command_xml_node) {
                         djfTreeItemNodeData* command_node_data = new djfTreeItemNodeData(command_xml_node, command_xml_node->GetName());
                         wxTreeItemId command_last_id = tree_ctrl->AppendItem(child_last_id, command_node_data->GetTitle(), command_node_data->GetCommandIconIndex(), command_node_data->GetCommandIconIndex(), command_node_data);
-                        tree_ctrl->SetItemState(command_last_id, (int)command_node_data->GetState());
+                        //tree_ctrl->SetItemState(command_last_id, (int)command_node_data->GetState());
                         command_xml_node = command_xml_node->GetNext();
                     }
                 }
@@ -100,10 +100,10 @@ void FillTreeCtrlWithData(wxTreeCtrl* tree_ctrl, wxXmlDocument* xml_doc) {
             for (unsigned int j = 0; j < 7; ++j) {
                 djfTreeItemNodeData* child_node_data = new djfTreeItemNodeData(node_data->GetXmlNode(), nation_name[j]);
                 wxTreeItemId child_last_id = tree_ctrl->AppendItem(last_id, child_node_data->GetTitle(), j, j, child_node_data);
-                tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
+                //tree_ctrl->SetItemState(child_last_id, (int)node_data->GetState());
             }
         }
-        tree_ctrl->SetItemState(last_id, (int)node_data->GetState());
+        //tree_ctrl->SetItemState(last_id, (int)node_data->GetState());
     }
 
     wxTreeItemId properties_node = tree_ctrl->GetLastChild(root_id);

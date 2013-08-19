@@ -494,8 +494,8 @@ rmmcFrame::rmmcFrame(wxWindow *parent,wxWindowID id) {
 	this->SetTitle(this->GetTitle() + " ver.: " + AutoVersion::FULLVERSION_STRING);
 	//config = new RadialMenuConfig();
 	xml_config = new wxXmlDocument;
-	CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
-	CommandsTreeCtrl->OnStateChange = &TreeItemStateChange;
+	//CommandsTreeCtrl->SetStateImageList(ItemStatesImageList);
+	//CommandsTreeCtrl->OnStateChange = &TreeItemStateChange;
 
 	Connect(ID_NEW,wxEVT_COMMAND_TOOL_CLICKED,(wxObjectEventFunction)&rmmcFrame::OnButton2Click);
 
